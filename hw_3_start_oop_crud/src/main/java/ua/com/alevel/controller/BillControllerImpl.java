@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 
 public class BillControllerImpl implements BillController {
 
-    private final BillServiceImpl billService = new BillServiceImpl();
+    private final BillService billService = new BillServiceImpl();
 
 
     @Override
