@@ -22,7 +22,6 @@ public class Menu {
         System.out.println("second task, please enter 2");
         System.out.println("third task, please enter 3");
         System.out.println("end, please enter 0");
-
     }
 
     private void tasks(BufferedReader reader, String select) throws IOException {

@@ -12,7 +12,6 @@ public class BillControllerImpl implements BillController {
 
     private final BillService billService = new BillServiceImpl();
 
-
     @Override
     public void start() throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));

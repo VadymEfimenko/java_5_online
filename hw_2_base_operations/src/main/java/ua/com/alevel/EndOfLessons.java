@@ -1,6 +1,7 @@
 package ua.com.alevel;
 
 public class EndOfLessons {
+
     public void timeOfLesson(int lessonNumber) {
         int start = 9 * 60;
         int countOfBreaks = lessonNumber - 1;

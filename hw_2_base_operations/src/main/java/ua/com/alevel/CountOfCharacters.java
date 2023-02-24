@@ -3,8 +3,9 @@ package ua.com.alevel;
 import java.util.HashSet;
 
 public class CountOfCharacters {
+
     public void countOfLetters(String userLine) {
-        StringBuilder alphabetic = new StringBuilder("");
+        StringBuilder alphabetic = new StringBuilder();
         for (int i = 0; i < userLine.length(); i++) {
             if (Character.isLetter(userLine.charAt(i))) {
                 alphabetic.append((userLine.charAt(i)));
