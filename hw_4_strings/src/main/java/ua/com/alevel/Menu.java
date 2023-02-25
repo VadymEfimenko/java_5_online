@@ -18,7 +18,7 @@ public class Menu {
 
     private void menu() {
         System.out.println();
-        System.out.println("usual revers ->  1");
+        System.out.println("usual reverse ->  1");
         System.out.println("substring reverse -> 2");
         System.out.println("substring reverse with indexes -> 3");
         System.out.println("If you want close, please enter 0");
