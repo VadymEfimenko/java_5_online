@@ -19,7 +19,7 @@ public class TextStatistic {
         Map<String, Long> rating = stringList.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-        return rating;
+        return rating; //
     }
 
 
