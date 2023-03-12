@@ -49,30 +49,4 @@ public class EntityStorage<E extends BaseEntity> {
         }
         return null;
     }
-
-//    public void add(E entity, E[] entityStorage) {
-//        System.out.println("entityStorage");
-//        System.out.println(entity.toString());
-//        Long id = generateId(entity, entityStorage);
-//        if (id >= 0) {
-//            System.out.println(id);
-//            entity.setId(id);
-//        } else {
-////            entityStorage = increaseStorage(entityStorage);
-//        }
-//
-//        for (int i = 0; i < entityStorage.length; i++) {
-//            if (entityStorage[i] == null) {
-//                entityStorage[i] = entity;
-//                break;
-//            }
-//        }
-//    }
-
-//    private E[] increaseStorage(E[] entityStorage) {
-//        E[] newBillsStorage = (E[]) new Object[(int) (entityStorage.length * 1.5) + 1];
-//        System.arraycopy(entityStorage, 0, newBillsStorage, 0, entityStorage.length);
-//        entityStorage = newBillsStorage;
-//        return entityStorage;
-//    }
 }
