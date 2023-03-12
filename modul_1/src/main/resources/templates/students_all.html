@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 15px;
+        }
+
+        a {
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        div {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>All Students</h1>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Year of studying</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${students}">
+            <td th:text="${student.getFirstName()}"></td>
+            <td th:text="${student.getLastName()}"></td>
+            <td th:text="${student.getYear()}"></td>
+            <td>
+                <a th:href="@{'/students/findById/' + ${student.getId()}}" type="button">details</a>
+            </td>
+            <td>
+                <a th:href="@{'/students/delete/' + ${student.getId()}}" type="button">delete</a>
+            </td>
+            <td>
+                <a th:href="@{'/students/update/' + ${student.getId()}}" type="button">update</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <a th:href="@{'/courses/new'}" role="button">
+        <button>New Course</button>
+    </a>
+
+    <a th:href="@{'/students/new'}" role="button">
+        <button>New Student</button>
+    </a>
+</div>
+<div>
+    <a th:href="@{'/courses'}" role="button">
+        <button>All Courses</button>
+    </a>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Update</title>
+</head>
+<body>
+<h1>Student Update</h1>
+
+<form th:action="@{/students/update/{id}(id = ${student.getId()})}" th:object="${student}" method="post">
+    <div>
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" placeholder="new first name"
+               th:field="*{firstName}">
+    </div>
+    <div>
+        <label for="lastName">First Name</label>
+        <input type="text" id="lastName" placeholder="new last name"
+               th:field="*{lastName}">
+    </div>
+    <div>
+        <label for="year">Year</label>
+        <input type="text" id="year" placeholder="year"
+               th:field="*{year}">
+    </div>
+
+    <div>
+        <button type="submit">SUBMIT!</button>
+    </div>
+</form>
+</body>
+</html>
