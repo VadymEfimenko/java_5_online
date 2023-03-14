@@ -1,5 +1,6 @@
 package ua.com.alevel.service.impl;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ua.com.alevel.dao.CourseStudentDao;
 import ua.com.alevel.entity.Course;
@@ -10,13 +11,10 @@ import ua.com.alevel.service.CourseStudentService;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class CourseStudentServiceImpl implements CourseStudentService {
 
     private final CourseStudentDao courseStudentDao;
-
-    public CourseStudentServiceImpl(CourseStudentDao courseStudentDao) {
-        this.courseStudentDao = courseStudentDao;
-    }
 
     @Override
     public void create(CourseStudent entity) {
