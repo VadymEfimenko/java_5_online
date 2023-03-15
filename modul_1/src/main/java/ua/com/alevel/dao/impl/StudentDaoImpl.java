@@ -9,7 +9,6 @@ import java.util.List;
 @Service
 public class StudentDaoImpl implements StudentDAO {
     private final EntityStorage<Student> entityStorage;
-    private Long studentId = 1L;
 
     public StudentDaoImpl(EntityStorage<Student> entityStorage) {
         this.entityStorage = entityStorage;
@@ -17,10 +16,7 @@ public class StudentDaoImpl implements StudentDAO {
 
     @Override
     public void create(Student entity) {
-        entity.setId(studentId);
-
         entityStorage.add(entity, entityStorage.getStudents());
-        studentId++;
     }
 
     @Override
