@@ -1,10 +1,14 @@
 package ua.com.alevel;
 
-import org.w3c.dom.Text;
+import java.io.IOException;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Main {
-    public static void main(String[] args) {
-        TextStatistic textStatistic = new TextStatistic();
-        System.out.println(textStatistic.rating(textStatistic.toList("hello hello world, how are you bitch?")));
+    public static void main(String[] args) throws IOException {
+        Menu menu = new Menu();
+        menu.start();
     }
 }
