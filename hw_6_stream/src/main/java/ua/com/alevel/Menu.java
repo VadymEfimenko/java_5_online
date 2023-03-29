@@ -38,7 +38,7 @@ public class Menu {
         }
         tableRows.sort(Comparator.comparingLong(TableRow::getRating));
         for (TableRow tableRow : tableRows) {
-            System.out.printf("%-15s %-15d %-15d %f %n", tableRow.word, tableRow.rating, tableRow.count, tableRow.percentage);
+            System.out.printf("%-15s %-15d %-15d %.2f %n", tableRow.word, tableRow.rating, tableRow.count, tableRow.percentage);
         }
     }
 
