@@ -1,7 +1,10 @@
 package ua.com.alelvel;
 
-public class Main {
-    public static void main(String[] args) {
+import java.io.IOException;
 
+public class Main {
+    public static void main(String[] args) throws IOException {
+        ConsoleInterface consoleInterface = new ConsoleInterface();
+        consoleInterface.start();
     }
 }
