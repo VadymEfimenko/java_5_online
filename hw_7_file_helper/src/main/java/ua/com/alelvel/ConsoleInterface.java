@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 public class ConsoleInterface {
-    FileHelper fileHelper = new FileHelper();
 
     public void start() throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
@@ -58,7 +57,7 @@ public class ConsoleInterface {
     private void listFiles(BufferedReader reader) throws IOException {
         System.out.println("enter your directory");
         String directory = reader.readLine();
-        List<File> allFiles = fileHelper.listFiles(directory);
+        List<File> allFiles = FileHelper.listFiles(directory);
         List<File> files = allFiles.stream().filter(File::isFile).toList();
         List<File> dirs = allFiles.stream().filter(File::isDirectory).toList();
         System.out.println("\n Files: \n");
@@ -72,7 +71,7 @@ public class ConsoleInterface {
         String directory = reader.readLine();
         System.out.println("enter file name");
         String fileName = reader.readLine();
-        System.out.println(fileHelper.createNewFileInDirectory(directory, fileName));
+        System.out.println(FileHelper.createNewFileInDirectory(directory, fileName));
     }
 
     public void createNewDirectoryInDirectory(BufferedReader reader) throws IOException {
@@ -80,7 +79,7 @@ public class ConsoleInterface {
         String directory = reader.readLine();
         System.out.println("enter name of new directory");
         String directoryName = reader.readLine();
-        System.out.println(fileHelper.createNewDirectoryInDirectory(directory, directoryName));
+        System.out.println(FileHelper.createNewDirectoryInDirectory(directory, directoryName));
     }
 
     public void deleteFileFromDirectory(BufferedReader reader) throws IOException {
@@ -88,7 +87,7 @@ public class ConsoleInterface {
         String directory = reader.readLine();
         System.out.println("enter file name");
         String fileName = reader.readLine();
-        System.out.println(fileHelper.deleteFileFromDirectory(directory, fileName));
+        System.out.println(FileHelper.deleteFileFromDirectory(directory, fileName));
     }
 
     public void deleteDirectoryFromDirectory(BufferedReader reader) throws IOException {
@@ -96,7 +95,7 @@ public class ConsoleInterface {
         String directory = reader.readLine();
         System.out.println("enter directory name you want to delete");
         String dirToDelete = reader.readLine();
-        fileHelper.deleteDirectoryFromDirectory(directory, dirToDelete);
+        FileHelper.deleteDirectoryFromDirectory(directory, dirToDelete);
     }
 
     public void moveFileToDirectory(BufferedReader reader) throws IOException {
@@ -104,7 +103,7 @@ public class ConsoleInterface {
         String fileName = reader.readLine();
         System.out.println("enter directory name you want move file");
         String distDir = reader.readLine();
-        fileHelper.moveFileToDirectory(fileName, distDir);
+        FileHelper.moveFileToDirectory(fileName, distDir);
     }
 
     public void findFileInDirectory(BufferedReader reader) throws IOException {
@@ -112,7 +111,7 @@ public class ConsoleInterface {
         String directory = reader.readLine();
         System.out.println("enter file name");
         String fileName = reader.readLine();
-        fileHelper.findFileInDirectory(directory, fileName).forEach(System.out::println);
+        FileHelper.findFileInDirectory(directory, fileName).forEach(System.out::println);
     }
 
     public void findDirectoryInDirectory(BufferedReader reader) throws IOException {
@@ -120,7 +119,7 @@ public class ConsoleInterface {
         String sourceDirectory = reader.readLine();
         System.out.println("enter directory name that you searching for");
         String searchedDirectory = reader.readLine();
-        fileHelper.findDirectoryInDirectory(sourceDirectory, searchedDirectory).forEach(System.out::println);
+        FileHelper.findDirectoryInDirectory(sourceDirectory, searchedDirectory).forEach(System.out::println);
     }
 
     public void findTextInFilesOfDirectory(BufferedReader reader) throws IOException {
@@ -128,6 +127,6 @@ public class ConsoleInterface {
         String directory = reader.readLine();
         System.out.println("enter text that you searching for");
         String text = reader.readLine();
-        fileHelper.findTextInFilesOfDirectory(directory, text).forEach(System.out::println);
+        FileHelper.findTextInFilesOfDirectory(directory, text).forEach(System.out::println);
     }
 }

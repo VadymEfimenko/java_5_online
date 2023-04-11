@@ -6,20 +6,23 @@ import org.apache.commons.io.filefilter.TrueFileFilter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.List;
 
 public class FileHelper {
 
-    public List<File> listFiles(String directory) {
+    private FileHelper() { }
+
+    public static List<File> listFiles(String directory) {
         File dir = new File(directory);
         if (dir.isDirectory()) {
             return FileUtils.listFilesAndDirs(dir, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE).stream().toList();
         } else {
-            return null;
+            return Collections.emptyList();
         }
     }
 
-    public boolean createNewFileInDirectory(String directory, String fileName) {
+    public static boolean createNewFileInDirectory(String directory, String fileName) {
         File file = new File(directory + "/" + fileName);
         try {
             return file.createNewFile();
@@ -30,17 +33,17 @@ public class FileHelper {
         }
     }
 
-    public boolean createNewDirectoryInDirectory(String distDirectory, String dirName) {
+    public static boolean createNewDirectoryInDirectory(String distDirectory, String dirName) {
         File file = new File(distDirectory + "/" + dirName);
         return file.mkdirs();
     }
 
-    public boolean deleteFileFromDirectory(String directory, String fileName) {
+    public static boolean deleteFileFromDirectory(String directory, String fileName) {
         File file = new File(directory + "/" + fileName);
         return file.delete();
     }
 
-    public void deleteDirectoryFromDirectory(String distDirectory, String dir) {
+    public static void deleteDirectoryFromDirectory(String distDirectory, String dir) {
         File file = new File(distDirectory + "/" + dir);
         try {
             FileUtils.deleteDirectory(file);
@@ -50,7 +53,7 @@ public class FileHelper {
         }
     }
 
-    public void moveFileToDirectory(String fileName, String destinationDirectory) {
+    public static void moveFileToDirectory(String fileName, String destinationDirectory) {
         File file = new File(fileName);
         File directory = new File(destinationDirectory);
         try {
@@ -61,7 +64,7 @@ public class FileHelper {
         }
     }
 
-    public List<File> findFileInDirectory(String directory, String fileName) {
+    public static List<File> findFileInDirectory(String directory, String fileName) {
         File sourceDir = new File(directory);
         List<File> searchedFiles = FileUtils.listFiles(sourceDir, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE)
                 .stream()
@@ -71,11 +74,11 @@ public class FileHelper {
             return searchedFiles;
         } else {
             System.out.println("file is not found");
-            return null;
+            return Collections.emptyList();
         }
     }
 
-    public List<File> findDirectoryInDirectory(String sourceDirectory, String searchedDirectory) {
+    public static List<File> findDirectoryInDirectory(String sourceDirectory, String searchedDirectory) {
         File sourceDir = new File(sourceDirectory);
         List<File> searchedDirs = FileUtils.listFilesAndDirs(sourceDir, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE)
                 .stream()
@@ -86,11 +89,11 @@ public class FileHelper {
             return searchedDirs;
         } else {
             System.out.println("directory is not found");
-            return null;
+            return Collections.emptyList();
         }
     }
 
-    public List<File> findTextInFilesOfDirectory(String directory, String text) {
+    public static List<File> findTextInFilesOfDirectory(String directory, String text) {
         File dir = new File(directory);
         List<File> files = FileUtils.listFiles(dir, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE).stream().toList();
 
