@@ -13,6 +13,7 @@ import java.util.stream.IntStream;
 
 public class FindCheapestWay {
     private final File file = new File("CitiesFile.txt");
+
     public Integer getCountOfCities() {
         return Integer.valueOf(allLines().get(0));
     }
@@ -77,7 +78,7 @@ public class FindCheapestWay {
         return ways;
     }
 
-    public List<String[]> searchedRoutsSplit(){
+    public List<String[]> searchedRoutsSplit() {
         List<String> ways = getWays();
         List<String[]> waysSplit = new ArrayList<>();
         ways.forEach(s -> waysSplit.add(s.split(" ")));
