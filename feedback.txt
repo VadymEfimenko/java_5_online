@@ -25,3 +25,5 @@ module 1 - о чем тут говорить, конечно 10 из 10
 8 - ну пиздец))) ну конечно зачет
     private final File coursesFile = new File("hw_8_crud_file/src/main/java/ua/com/alevel/files/courses.csv")
     такие вещи конечно писать абсурдно, либо темп директори, либо просто корень проекта)
+
+модуль 2 - вот прям неплохо, неплохо
