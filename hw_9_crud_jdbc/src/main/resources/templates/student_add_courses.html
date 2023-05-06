@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Courses</title>
+
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            height: 50px;
+
+        }
+
+        th, td {
+            padding: 5px;
+        }
+
+        #bottomButtonAll, #back {
+            padding-right: 40px;
+        }
+
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Student</th>
+        <th>Courses to Add</th>
+    </tr>
+    </thead>
+    <tbody>
+    <td th:text="${student.getFirstName()} + ' ' + ${student.getLastName()}"></td>
+    <td>
+        <table>
+            <tr th:each="course : ${courses}">
+                <td th:text="${course.getTitle()} + ' ' + ${course.getMouthDuration()} + ' duration'"></td>
+                <td>
+                    <a role="button"
+                       th:href="@{/students/addNewCourseToStudent/{courseId}/{studentId}(courseId = ${course.getId()}, studentId = ${student.getId()})}">
+                        <button>Join To Course</button>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </td>
+    </tbody>
+</table>
+<a th:href="@{'/students'}" role="button" id="bottomButtonAll">
+    <button>All Students</button>
+</a>
+<a th:href="@{'/students/findById/' + ${student.getId()}}" type="button" id="back">
+    <button>Back To Student</button>
+</a>
+
+</body>
+</html>
