@@ -81,27 +81,10 @@ public class CourseDaoImpl implements CourseDAO {
         Transaction transaction = null;
         try (Session session = sessionFactory.getCurrentSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("select c.id, c.title, c.mouthDuration from Course c" +
+            Query query = session.createQuery("select Course from Course c" +
                             " join c.students cs where cs.id = :studentId")
                     .setParameter("studentId", studentId);
-
-//            List<Course> courses = query.getResultList();  todo почему не работает как в методе findAll
-
-//            List coursesObj = query.getResultList();
-//            List<Course> courses = new ArrayList<>();  <-
-//            coursesObj.forEach(c -> courses.add((Course) c));
-
-//            Query query = session.createSQLQuery(FIND_ALL_COURSES_BY_STUDENTS_ID + studentId);
-//
-            List<Object[]> rows = query.getResultList();
-            List<Course> courses = new ArrayList<>();
-            for (Object[] row : rows) {
-                Course course = new Course();
-                course.setId((Long) row[0]);
-                course.setTitle((String) row[1]);
-                course.setMouthDuration((Integer) row[2]);
-                courses.add(course);
-            }
+            List<Course> courses = query.getResultList();
             transaction.commit();
             return courses;
         } catch (Exception e) {
