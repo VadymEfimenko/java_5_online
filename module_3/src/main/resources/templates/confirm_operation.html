@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            height: 50px;
+
+        }
+
+        th, td {
+            padding: 15px;
+        }
+
+        #createAcc, #users {
+            padding-right: 100px;
+        }
+    </style>
+</head>
+<body>
+<h1>Are you confirm your operation?</h1>
+<table>
+    <thead>
+    <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Account number</th>
+        <th>Sum</th>
+        <th>Destination</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${userTo.getFirstName()}"></td>
+        <td th:text="${userTo.getLastName()}"></td>
+        <td th:text="${operationDto.getAccountToNumber()}"></td>
+        <td th:text="${operationDto.getOperationSum()}"></td>
+        <td th:text="${operationDto.getOperationCategory()}"></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a th:href="@{'/accounts/sendFinally/' + ${operationDto.accountFromId}}" type="button">Send</a>
+</div>
+</body>
