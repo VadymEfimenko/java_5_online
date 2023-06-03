@@ -19,7 +19,11 @@ public interface AccountService {
 
     Account findById(Long accountId);
 
-    void send(Operation operation, Long accountToNumber);
+    void send(Operation operation);
 
     User findUserByAccountId(Long accountId);
+
+    void topUp(Long accountId, Long sum);
+
+    void exportInFile(Long accountId);
 }

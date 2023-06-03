@@ -10,12 +10,10 @@ import lombok.EqualsAndHashCode;
 @Entity
 public class Operation extends BaseEntity {
 
-    @OneToOne
-    @JoinColumn(name = "account_from")
+    @ManyToOne()
     private Account accountFrom;
 
-    @OneToOne()
-    @JoinColumn(name = "account_to")
+    @ManyToOne()
     private Account accountTo;
 
     private Long sum;

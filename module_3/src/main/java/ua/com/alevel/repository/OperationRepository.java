@@ -12,4 +12,7 @@ public interface OperationRepository extends BaseRepository<Operation> {
 
     List<Operation> findAllByAccountToId(Long accountToId);
 
+    void deleteAllByAccountFromId(Long accountFromId);
+
+    void deleteAllByAccountToId(Long accountToId);
 }

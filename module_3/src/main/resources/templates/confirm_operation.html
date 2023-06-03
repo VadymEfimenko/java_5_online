@@ -41,7 +41,27 @@
     </tr>
     </tbody>
 </table>
-<div>
-    <a th:href="@{'/accounts/sendFinally/' + ${operationDto.accountFromId}}" type="button">Send</a>
-</div>
+<form th:action="@{'/accounts/sendFinally/' + ${operationDto.accountFromId}}" class="center" method="post">
+
+    <div hidden="hidden">
+        <label for="number">Number of account</label>
+        <input type="number" placeholder="enter number of account" id="number"
+               th:field="*{operationDto.accountToNumber}">
+    </div>
+    <div hidden="hidden">
+        <label for="sum">Sum</label>
+        <input type="number" placeholder="enter sum you want to send" id="sum"
+               th:field="*{operationDto.operationSum}"></div>
+    <div hidden="hidden">
+        <label for="category">Destination of your operation</label>
+        <input type="text" placeholder="enter category" id="category"
+               th:field="*{operationDto.operationCategory}">
+    </div>
+    <div class="center">
+        <button type="submit">SUBMIT!</button>
+    </div>
+</form>
+<!--<div>-->
+<!--    <a th:href="@{'/accounts/sendFinally/' + ${operationDto.accountFromId}}" type="button">Send</a>-->
+<!--</div>-->
 </body>

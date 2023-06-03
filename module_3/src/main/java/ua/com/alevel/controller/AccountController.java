@@ -2,7 +2,6 @@ package ua.com.alevel.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import ua.com.alevel.dto.OperationDto;
 import ua.com.alevel.entity.Account;
@@ -10,6 +9,8 @@ import ua.com.alevel.entity.Operation;
 import ua.com.alevel.entity.User;
 import ua.com.alevel.service.AccountService;
 import ua.com.alevel.service.UserService;
+
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/accounts")
@@ -34,8 +35,6 @@ public class AccountController {
     @GetMapping("/createNewUserAccount/{userId}")
     public String createAccountByUser(Model model, @PathVariable Long userId) {
         Account account = new Account();
-        //  account.setX(11); todo если создать поле в классе аккаунт и засетать его здесь то в пост маппинге оно будет null
-//        account.setUser(user); // todo в пост маппинге аккаунт прилетает без юзера
         User user = userService.findUserById(userId);
         model.addAttribute("account", account);
         model.addAttribute("user", user);
@@ -45,8 +44,7 @@ public class AccountController {
     @PostMapping("/createNewUserAccount/{userId}")
     public String createAccountByUser(@ModelAttribute("account") Account account,
                                       @PathVariable Long userId) {
-        //    System.out.println(account.getX());  // <-  todo тут null, значение поля удалилось
-        account.setUser(userService.findUserById(userId)); // todo поэтому сетаю юзера здесь
+        account.setUser(userService.findUserById(userId));
         accountService.create(account);
         return "redirect:/accounts/byUserId/{userId}";
     }
@@ -54,21 +52,21 @@ public class AccountController {
     @GetMapping("/send/{accountFromId}")
     public String sendRequest(Model model, @PathVariable Long accountFromId) {
         OperationDto operationDto = new OperationDto();
-        operationDto.setAccountFromId(accountFromId);
         model.addAttribute("operationDto", operationDto);
         model.addAttribute("accFromId", accountFromId);
         return "account_send_form";
     }
 
-    @PostMapping("/confirmOperation/{accountFromId}")
-    public String confirmOperation(@ModelAttribute("operationDto") OperationDto operationDto,@PathVariable Long accountFromId , Model model) {
-        System.out.println("confirm  " + operationDto); // todo здесь это поле null
-
+    @GetMapping("/confirmOperation/{accountFromId}")
+    public String confirmOperation(@ModelAttribute("operationDto") OperationDto operationDto, @PathVariable Long accountFromId, Model model) {
         if (accountService.checkIfAccountExistByNumber(operationDto.getAccountToNumber())
                 && operationDto.getOperationSum() > 0
-                && accountService.findById(operationDto.getAccountFromId()).getBalance() >= operationDto.getOperationSum()) {
+                && accountService.findById(operationDto.getAccountFromId()).getBalance() >= operationDto.getOperationSum()
+                && !operationDto.getOperationCategory().trim().isEmpty()
+                && !Objects.equals(operationDto.getAccountFromId(), accountService.findByNumber(operationDto.getAccountToNumber()).getId())) {
             Account accountToEntity = accountService.findByNumber(operationDto.getAccountToNumber());
             User userTo = accountService.findUserByAccountId(accountToEntity.getId());
+            model.addAttribute("accFromId", accountFromId);
             model.addAttribute("userTo", userTo);
             model.addAttribute("operationDto", operationDto);
             return "confirm_operation";
@@ -78,11 +76,36 @@ public class AccountController {
 
     @PostMapping("/sendFinally/{accountFromId}")
     public String sendFinally(@ModelAttribute("operationDto") OperationDto operationDto, @PathVariable Long accountFromId) {
-        System.out.println("hi");
-        System.out.println(operationDto);
-//            operation.setAccountFrom(accountService.findById(accountFromId));
-//            accountService.send(operation, accountTo.getNumber());
-//            User userFrom = accountService.findUserByAccountId(accountFromId);
-            return "redirect:/users";
+        User user = accountService.findUserByAccountId(accountFromId);
+        Operation operation = new Operation();
+        operation.setSum(operationDto.getOperationSum());
+        operation.setCategory(operationDto.getOperationCategory());
+        operation.setAccountFrom(accountService.findById(accountFromId));
+        operation.setAccountTo(accountService.findByNumber(operationDto.getAccountToNumber()));
+        accountService.send(operation);
+        return "redirect:/accounts/byUserId/" + user.getId();
+    }
+
+    @GetMapping("/topUp/{accountId}")
+    public String topUpForm(@PathVariable Long accountId, Model model) {
+        Account account = accountService.findById(accountId);
+        OperationDto sum = new OperationDto();
+        model.addAttribute("account", account);
+        model.addAttribute("sum", sum);
+        return "topUp";
+    }
+
+    @GetMapping("/topUpFinally/{accountId}")
+    public String topUpFinally(@PathVariable Long accountId, @ModelAttribute("sum") OperationDto sum) {
+        User user = accountService.findUserByAccountId(accountId);
+        accountService.topUp(accountId, sum.getOperationSum());
+        return "redirect:/accounts/byUserId/" + user.getId();
+    }
+
+    @GetMapping("/exportOperations/{accountId}")
+    public String exportInFile(@PathVariable Long accountId) {
+        User user = accountService.findUserByAccountId(accountId);
+        accountService.exportInFile(accountId);
+        return "redirect:/accounts/byUserId/" + user.getId();
     }
 }

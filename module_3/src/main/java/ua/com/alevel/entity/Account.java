@@ -1,6 +1,9 @@
 package ua.com.alevel.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -8,7 +11,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Data
 @Table(name = "accounts")
-public class Account extends BaseEntity{
+public class Account extends BaseEntity {
 
     private Long balance;
 
