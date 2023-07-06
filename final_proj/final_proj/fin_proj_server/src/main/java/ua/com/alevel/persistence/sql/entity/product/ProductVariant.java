@@ -7,9 +7,9 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import ua.com.alevel.persistence.sql.entity.BaseEntity;
-import ua.com.alevel.persistence.sql.type.Crust;
-import ua.com.alevel.persistence.sql.type.ToppingAndCheese;
-import ua.com.alevel.persistence.sql.type.СornicioneType;
+import ua.com.alevel.persistence.sql.type.CrustType;
+import ua.com.alevel.persistence.sql.type.ToppingAndCheeseType;
+import ua.com.alevel.persistence.sql.type.CornicioneType;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -19,13 +19,13 @@ public class ProductVariant extends BaseEntity {
 
     private Integer size;
 
-    private СornicioneType сornicioneType;
+    private CornicioneType cornicioneType;
 
-    private ToppingAndCheese topping;
+    private ToppingAndCheeseType topping;
 
-    private ToppingAndCheese cheese;
+    private ToppingAndCheeseType cheese;
 
-    private Crust crust;
+    private CrustType crustType;
 
     private Boolean meat;
 

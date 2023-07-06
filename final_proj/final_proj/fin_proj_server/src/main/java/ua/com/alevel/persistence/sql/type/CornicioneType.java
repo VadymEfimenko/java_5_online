@@ -3,7 +3,7 @@ package ua.com.alevel.persistence.sql.type;
 import lombok.Getter;
 
 @Getter
-public enum СornicioneType {
+public enum CornicioneType {
 
     CHEESE_CORNER("Cheese corner"),
     HUNTERS_SAUSAGE_CORNER("Sausage corner"),
@@ -11,7 +11,7 @@ public enum СornicioneType {
 
     private final String corner;
 
-    СornicioneType(String corner) {
+    CornicioneType(String corner) {
         this.corner = corner;
     }
 }
