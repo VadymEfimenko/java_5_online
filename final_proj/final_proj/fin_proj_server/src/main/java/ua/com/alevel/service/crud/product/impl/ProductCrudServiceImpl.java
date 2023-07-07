@@ -59,7 +59,10 @@ public class ProductCrudServiceImpl implements ProductCrudService {
 
     @Override
     public Collection<Product> findAll() {
+        Collection<Product> products = productRepository.findAll();
+        products.forEach(product -> System.out.println(product.getProductImages()));
         return productRepository.findAll();
+
     }
 
     private void isValidProduct(Product entity) {

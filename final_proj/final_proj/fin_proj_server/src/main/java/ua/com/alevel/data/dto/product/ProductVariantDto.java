@@ -5,9 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ua.com.alevel.data.dto.BaseDto;
 import ua.com.alevel.persistence.sql.entity.product.ProductVariant;
+import ua.com.alevel.persistence.sql.type.CornicioneType;
 import ua.com.alevel.persistence.sql.type.CrustType;
 import ua.com.alevel.persistence.sql.type.ToppingAndCheeseType;
-import ua.com.alevel.persistence.sql.type.CornicioneType;
 
 @Getter
 @Setter
@@ -26,7 +26,9 @@ public class ProductVariantDto extends BaseDto {
 
     private Boolean meat;
 
-    public ProductVariantDto(ProductVariant productVariant){
+    private Long code;
+
+    public ProductVariantDto(ProductVariant productVariant) {
         setId(productVariant.getId());
         this.size = productVariant.getSize();
         this.cornicioneType = productVariant.getCornicioneType();
@@ -34,5 +36,6 @@ public class ProductVariantDto extends BaseDto {
         this.cheese = productVariant.getCheese();
         this.crustType = productVariant.getCrustType();
         this.meat = productVariant.getMeat();
+        this.code = productVariant.getCode();
     }
 }

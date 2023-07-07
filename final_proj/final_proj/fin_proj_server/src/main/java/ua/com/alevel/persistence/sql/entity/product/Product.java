@@ -3,14 +3,17 @@ package ua.com.alevel.persistence.sql.entity.product;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import ua.com.alevel.persistence.sql.entity.BaseEntity;
 
 import java.util.HashSet;
 import java.util.Set;
 
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+
+@Getter
+@Setter
 @Entity
 @Table(name = "products")
 public class Product extends BaseEntity {

@@ -10,8 +10,6 @@ import ua.com.alevel.persistence.sql.repository.product.ProductVariantRepository
 import ua.com.alevel.service.crud.CrudHelperService;
 import ua.com.alevel.service.crud.product.ProductVariantCrudService;
 
-import java.util.Collection;
-
 @Service
 @Transactional
 public class ProductVariantCrudServiceImpl implements ProductVariantCrudService {
@@ -50,7 +48,9 @@ public class ProductVariantCrudServiceImpl implements ProductVariantCrudService 
     }
 
     @Override
-    public Collection<ProductVariant> findByProduct(Product product) {
-        return productVariantRepository.findByProduct(product);
+    public ProductVariant findByProduct(Product product) {
+        return productVariantRepository
+                .findByProduct(product)
+                .orElseThrow(() -> new RuntimeException("Product variant not found by product id: " + product.getId()));
     }
 }
