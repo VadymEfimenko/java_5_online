@@ -7,9 +7,9 @@ public enum ToppingAndCheeseType {
 
     STANDARD("Standard"), DOUBLE("Double");
 
-    private final String topping;
+    private final String toppingAndCheese;
 
     ToppingAndCheeseType(String toppingAndCheese) {
-        this.topping = toppingAndCheese;
+        this.toppingAndCheese = toppingAndCheese;
     }
 }

@@ -5,13 +5,13 @@ import lombok.Getter;
 @Getter
 public enum CornicioneType {
 
-    CHEESE_CORNER("Cheese corner"),
-    HUNTERS_SAUSAGE_CORNER("Sausage corner"),
-    VIENNA_SAUSAGES_CORNER("Vienna sausages corner");
+    CHEESE_CORNICIONE("Cheese cornicione"),
+    HUNTERS_SAUSAGE_CORNICIONE("Sausage cornicione"),
+    VIENNA_SAUSAGES_CORNICIONE("Vienna sausages cornicione");
 
-    private final String corner;
+    private final String cornicione;
 
-    CornicioneType(String corner) {
-        this.corner = corner;
+    CornicioneType(String cornicione) {
+        this.cornicione = cornicione;
     }
 }

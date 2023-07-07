@@ -11,6 +11,8 @@ import ua.com.alevel.persistence.sql.type.CornicioneType;
 import ua.com.alevel.persistence.sql.type.CrustType;
 import ua.com.alevel.persistence.sql.type.ToppingAndCheeseType;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,14 +26,13 @@ public class ProductPDPDto {
     private String description;
     private Set<String> images;
     private String price = "100.00";
-    private Integer size;
-    private CornicioneType cornicioneType;
-    private ToppingAndCheeseType topping;
-    private ToppingAndCheeseType cheese;
-    private CrustType crustType;
-    private String meat;
+    private List<Integer> sizeList;
+    private List<String> cornicioneTypeList;
+    private List<String> toppingList;
+    private List<String> cheeseList;
+    private List<String> crustTypeList;
 
-    public ProductPDPDto(Product product, ProductVariant productVariant) {
+    public ProductPDPDto(Product product, Collection<ProductVariant> productVariants) {
         this.id = product.getId();
         this.name = product.getName();
         this.description = product.getDescription();
@@ -39,11 +40,12 @@ public class ProductPDPDto {
         if (CollectionUtils.isNotEmpty(productImages)) {
             this.images = productImages.stream().map(ProductImage::getImageUrl).collect(Collectors.toSet());
         }
-        this.size = productVariant.getSize();
-        this.cornicioneType = productVariant.getCornicioneType();
-        this.topping = productVariant.getTopping();
-        this.cheese = productVariant.getCheese();
-        this.crustType = productVariant.getCrustType();
-        this.meat = productVariant.getMeat() ? "with meat" : "without meat";
+        if (CollectionUtils.isNotEmpty(productVariants)){
+            this.sizeList = productVariants.stream().map(ProductVariant::getSize).distinct().toList();
+            this.cornicioneTypeList = productVariants.stream().map(ProductVariant::getCornicioneType).map(CornicioneType::getCornicione).distinct().toList();
+            this.toppingList = productVariants.stream().map(ProductVariant::getTopping).map(ToppingAndCheeseType::getToppingAndCheese).distinct().toList();
+            this.cheeseList = productVariants.stream().map(ProductVariant::getCheese).map(ToppingAndCheeseType::getToppingAndCheese).distinct().toList();
+            this.crustTypeList = productVariants.stream().map(ProductVariant::getCrustType).map(CrustType::getCrust).distinct().toList();
+        }
     }
 }
