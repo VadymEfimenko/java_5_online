@@ -1,1 +1,149 @@
-<p>pdpwq works!</p>
+<ng-container *ngIf="product">
+  <table class="table table-striped">
+    <tr>
+      <th>
+        Product name
+      </th>
+      <td>
+        {{ product.name }}
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Product view
+      </th>
+      <td>
+        <div class="d-flex">
+          <!--        <div class="d-flex flex-wrap">-->
+          <div class="p-1" *ngFor="let image of product.images">
+            <img src="{{ image }}" class="card-img-top" alt="...">
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Product description
+      </th>
+      <td>
+        {{ product.description }}
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Size variants
+      </th>
+      <td>
+        <div class="d-flex flex-wrap">
+          <div class="p-1" *ngFor="let size of product.sizeList">
+            <!--            <button class="btn btn-light" (click)="setOs(os)">{{ os }}</button>-->
+            {{size}}
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Cornicione variants
+      </th>
+      <td>
+        <div class="d-flex flex-wrap">
+          <div class="p-1" *ngFor="let cornicione of product.cornicioneTypeList">
+            <!--            <button class="btn btn-light" (click)="setCpu(cpu)">{{ cpu }}</button>-->
+            {{cornicione}}
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Toppings variants
+      </th>
+      <td>
+        <div class="d-flex flex-wrap">
+          <div class="p-1" *ngFor="let topping of product.toppingList">
+            <!--            <button class="btn btn-light" (click)="setRam(ram)">{{ ram }}</button>-->
+            {{topping}}
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Cheese variants
+      </th>
+      <td>
+        <div class="d-flex flex-wrap">
+          <div class="p-1" *ngFor="let cheese of product.cheeseList">
+            <!--            <button class="btn btn-light" (click)="setSsd(ssd)">{{ ssd }}</button>-->
+            {{cheese}}
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Crust variants
+      </th>
+      <td>
+        <div class="d-flex flex-wrap">
+          <div class="p-1" *ngFor="let crust of product.crustTypeList">
+            <!--            <button class="btn btn-light" (click)="setColor(color)">{{ color }}</button>-->
+            {{crust}}
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <!--  <div class="d-flex flex-column mt-4">-->
+  <!--    <div class="p-1">-->
+  <!--      <h3>-->
+  <!--        Final configuration-->
+  <!--      </h3>-->
+  <!--    </div>-->
+  <!--    <div class="p-1" *ngIf="productResult$ | async as productResult">-->
+  <!--      <table class="table table-striped" style="width: 400px">-->
+  <!--        <tr>-->
+  <!--          <th>OS</th>-->
+  <!--          <td>{{ productResult.os }}</td>-->
+  <!--        </tr>-->
+  <!--        <tr>-->
+  <!--          <th>CPU</th>-->
+  <!--          <td>{{ productResult.cpu }}</td>-->
+  <!--        </tr>-->
+  <!--        <tr>-->
+  <!--          <th>RAM</th>-->
+  <!--          <td>{{ productResult.ram }}</td>-->
+  <!--        </tr>-->
+  <!--        <tr>-->
+  <!--          <th>SSD</th>-->
+  <!--          <td>{{ productResult.ssd }}</td>-->
+  <!--        </tr>-->
+  <!--        <tr>-->
+  <!--          <th>Color</th>-->
+  <!--          <td>{{ productResult.color }}</td>-->
+  <!--        </tr>-->
+  <!--        <tr>-->
+  <!--          <th>Display resolution</th>-->
+  <!--          <td>{{ productResult.displayResolution }}</td>-->
+  <!--        </tr>-->
+  <!--        <tr>-->
+  <!--          <th>Display type</th>-->
+  <!--          <td>{{ productResult.displayType }}</td>-->
+  <!--        </tr>-->
+  <!--        <tr>-->
+  <!--          <th>Display size</th>-->
+  <!--          <td>{{ productResult.displaySize }}</td>-->
+  <!--        </tr>-->
+  <!--        <tr>-->
+  <!--          <th>Result price</th>-->
+  <!--          <td>{{ productResult.price }}</td>-->
+  <!--        </tr>-->
+  <!--      </table>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--  <div class="d-flex flex-column mt-4">-->
+  <!--    <button type="button" class="btn btn-primary" [disabled]="!(isValidProductResult$ | async)">Buy</button>-->
+  <!--  </div>-->
+</ng-container>

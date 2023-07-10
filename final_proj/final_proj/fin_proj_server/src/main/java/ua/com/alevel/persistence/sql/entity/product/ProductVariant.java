@@ -30,6 +30,9 @@ public class ProductVariant extends BaseEntity {
     @Column(name = "crust_type")
     private CrustType crustType;
 
+    @Column(nullable = false)
+    private Integer price;
+
     private Boolean meat;
 
     @Column(nullable = false, unique = true)

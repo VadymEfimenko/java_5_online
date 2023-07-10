@@ -25,7 +25,7 @@ public class ProductPDPDto {
     private String name;
     private String description;
     private Set<String> images;
-    private String price = "100.00";
+    private Integer price = 100;
     private List<Integer> sizeList;
     private List<String> cornicioneTypeList;
     private List<String> toppingList;
