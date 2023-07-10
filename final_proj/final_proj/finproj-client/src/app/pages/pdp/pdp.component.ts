@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 import {PdpService} from "../../services/pdp.service";
 import {ProductPdpModel} from "../../models/product-pdp.model";
 import {CommonModule} from "@angular/common";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable, take, tap} from "rxjs";
 import {defaultProductResultModel, ProductResultModel} from "../../models/product-result.model";
 
 @Component({
@@ -36,8 +36,85 @@ export class PdpComponent implements OnInit {
     // this._form.statusChanges.subscribe(status => console.log('status', status))
   }
 
-  // setSize(size : number): void{
-  //
-  // }
 
+  setSize(size: number): void {
+    this.productResult$
+      .pipe(
+        take(1),
+        tap(res => {
+          const ps: ProductResultModel = { ...res };
+          ps.size = size;
+          this._productResultSub$.next({ ...ps });
+          // this._form.controls.os.setValue(os);
+
+      // its commented in egor   // this.checkForUndefined(ps);
+        })
+      )
+      .subscribe();
+  }
+
+
+  setCornicione(cornicione: string) {
+    this.productResult$
+      .pipe(
+        take(1),
+        tap(res => {
+          const ps: ProductResultModel = { ...res };
+          ps.cornicioneType = cornicione;
+          this._productResultSub$.next({ ...ps });
+          // this._form.controls.os.setValue(os);
+
+          // its commented in egor   // this.checkForUndefined(ps);
+        })
+      )
+      .subscribe();
+  }
+
+  setTopping(topping: string) {
+    this.productResult$
+      .pipe(
+        take(1),
+        tap(res => {
+          const ps: ProductResultModel = { ...res };
+          ps.topping = topping;
+          this._productResultSub$.next({ ...ps });
+          // this._form.controls.os.setValue(os);
+
+          // its commented in egor   // this.checkForUndefined(ps);
+        })
+      )
+      .subscribe();
+  }
+
+  setCheese(cheese: string) {
+    this.productResult$
+      .pipe(
+        take(1),
+        tap(res => {
+          const ps: ProductResultModel = { ...res };
+          ps.cheese = cheese;
+          this._productResultSub$.next({ ...ps });
+          // this._form.controls.os.setValue(os);
+
+          // its commented in egor   // this.checkForUndefined(ps);
+        })
+      )
+      .subscribe();
+  }
+
+  setCrust(crust: string) {
+    this.productResult$
+      .pipe(
+        take(1),
+        tap(res => {
+          const ps: ProductResultModel = { ...res };
+          ps.crustType = crust;
+          this._productResultSub$.next({ ...ps });
+          // this._form.controls.os.setValue(os);
+
+          // its commented in egor   // this.checkForUndefined(ps);
+        })
+      )
+      .subscribe();
+  }
 }

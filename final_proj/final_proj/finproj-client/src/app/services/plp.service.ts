@@ -21,4 +21,14 @@ export class PlpService {
         })
       );
   }
+
+  // searchProduct(query: string): Observable<any> {
+  //   return this._http.get('http://localhost:8080/products/search?query=' + query)
+  //     .pipe(
+  //       map(res => {
+  //         const data: DataContainer = res as DataContainer;
+  //         return data.data;
+  //       })
+  //     );
+  // }
 }
