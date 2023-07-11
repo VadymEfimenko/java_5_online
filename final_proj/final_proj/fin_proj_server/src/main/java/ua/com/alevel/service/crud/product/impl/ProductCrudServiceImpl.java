@@ -12,6 +12,7 @@ import ua.com.alevel.service.crud.CrudHelperService;
 import ua.com.alevel.service.crud.product.ProductCrudService;
 
 import java.util.Collection;
+import java.util.List;
 
 import static ua.com.alevel.util.ExceptionUtil.*;
 
@@ -59,10 +60,11 @@ public class ProductCrudServiceImpl implements ProductCrudService {
 
     @Override
     public Collection<Product> findAll() {
-        Collection<Product> products = productRepository.findAll();
-        products.forEach(product -> System.out.println(product.getProductImages()));
         return productRepository.findAll();
+    }
 
+    public List<Product> findProductsByNameContainsIgnoreCase(String query) {
+        return productRepository.findProductsByNameContainsIgnoreCase(query);
     }
 
     private void isValidProduct(Product entity) {

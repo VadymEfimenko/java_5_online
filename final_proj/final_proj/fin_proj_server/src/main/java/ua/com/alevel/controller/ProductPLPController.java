@@ -3,6 +3,7 @@ package ua.com.alevel.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ua.com.alevel.data.dto.product.ProductPLPDto;
 import ua.com.alevel.data.response.DataContainer;
@@ -23,5 +24,10 @@ public class ProductPLPController {
     @GetMapping
     public ResponseEntity<DataContainer<Collection<ProductPLPDto>>> findAll() {
         return ResponseEntity.ok(new DataContainer<>(productPLPFacade.findAll()));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<DataContainer<Collection<ProductPLPDto>>> findProductsByNameContainsIgnoreCase(@RequestParam String query) {
+        return ResponseEntity.ok(new DataContainer<>(productPLPFacade.findProductsByNameContainsIgnoreCase(query)));
     }
 }

@@ -19,6 +19,7 @@ public class ProductCrudFacadeImpl implements ProductCrudFacade {
     public ProductCrudFacadeImpl(ProductCrudService productCrudService) {
         this.productCrudService = productCrudService;
     }
+
     @Override
     public void create(ProductDto dto) {
         Product product = new Product();
@@ -48,7 +49,7 @@ public class ProductCrudFacadeImpl implements ProductCrudFacade {
     @Override
     public DataTableResponse<ProductDto> findAll(DataTableRequest request) {
         Page<Product> page = productCrudService.findAll(request);
-        DataTableResponse<ProductDto> dataTableResponse = new DataTableResponse<ProductDto>(request, page);
+        DataTableResponse<ProductDto> dataTableResponse = new DataTableResponse<>(request, page);
         List<ProductDto> list = page.getContent().stream().map(ProductDto::new).toList();
         dataTableResponse.setItems(list);
         return dataTableResponse;
