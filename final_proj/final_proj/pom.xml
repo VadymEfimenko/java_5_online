@@ -19,6 +19,7 @@
 
     <modules>
         <module>fin_proj_server</module>
+        <module>fin_proj_supplier</module>
     </modules>
 
     <properties>

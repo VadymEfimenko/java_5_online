@@ -7,6 +7,7 @@ import {ProductPlpModel} from "../../models/product-plp.model";
 import {DataContainer} from "../../models/data.container";
 import {HttpClient} from "@angular/common/http";
 import {PlpComponent} from "../../pages/plp/plp.component";
+import {PlpService} from "../../services/plp.service";
 
 @Component({
   selector: 'app-search',
@@ -21,18 +22,10 @@ export class AppSearchComponent {
     query: new FormControl()
   });
 
-  constructor(private _http: HttpClient) {
+  constructor(private _http: HttpClient, private _searchService: ProductSearchService) {
   }
 
-  searchProduct(): Observable<any> {
-    console.log(this.queryForm.value.query)
-    return this._http.get('http://localhost:8080/products/search?query=' + this.queryForm.value.query ?? '')
-      .pipe(
-        map(res => {
-          const data: DataContainer = res as DataContainer;
-          return data.data;
-        })
-      );
-
+  searchProduct(): void {
+    this._searchService.loadSearchProducts(this.queryForm.value.query);
   }
 }
