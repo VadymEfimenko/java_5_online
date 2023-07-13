@@ -14,6 +14,7 @@ public class ProductImageDto extends BaseDto {
     private String imageUrl;
     private Boolean mainImage;
 
+
     public ProductImageDto(ProductImage productImage) {
         setId(productImage.getId());
         this.imageUrl = productImage.getImageUrl();

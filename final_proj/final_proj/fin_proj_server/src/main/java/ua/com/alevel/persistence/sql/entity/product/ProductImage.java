@@ -26,6 +26,8 @@ public class ProductImage extends BaseEntity {
     @Column(name = "main_image", nullable = false)
     private Boolean mainImage;
 
+    private String name;
+
     @ManyToMany(mappedBy = "productImages")
     private Set<Product> products = new HashSet<>();
 

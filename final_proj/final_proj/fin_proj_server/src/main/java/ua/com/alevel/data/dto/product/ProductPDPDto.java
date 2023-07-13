@@ -25,7 +25,7 @@ public class ProductPDPDto {
     private String name;
     private String description;
     private Set<String> images;
-    private Integer price = 100;
+    private List<Integer> price;
     private List<Integer> sizeList;
     private List<String> cornicioneTypeList;
     private List<String> toppingList;
@@ -46,6 +46,7 @@ public class ProductPDPDto {
             this.toppingList = productVariants.stream().map(ProductVariant::getTopping).map(ToppingAndCheeseType::getToppingAndCheese).distinct().toList();
             this.cheeseList = productVariants.stream().map(ProductVariant::getCheese).map(ToppingAndCheeseType::getToppingAndCheese).distinct().toList();
             this.crustTypeList = productVariants.stream().map(ProductVariant::getCrustType).map(CrustType::getCrust).distinct().toList();
+            this.price = productVariants.stream().map(ProductVariant::getPrice).distinct().toList();
         }
     }
 }

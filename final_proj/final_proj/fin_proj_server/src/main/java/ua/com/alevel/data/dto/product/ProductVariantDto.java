@@ -24,10 +24,6 @@ public class ProductVariantDto extends BaseDto {
 
     private CrustType crustType;
 
-    private Boolean meat;
-
-    private Long code;
-
     public ProductVariantDto(ProductVariant productVariant) {
         setId(productVariant.getId());
         this.size = productVariant.getSize();
@@ -35,7 +31,5 @@ public class ProductVariantDto extends BaseDto {
         this.topping = productVariant.getTopping();
         this.cheese = productVariant.getCheese();
         this.crustType = productVariant.getCrustType();
-        this.meat = productVariant.getMeat();
-        this.code = productVariant.getCode();
     }
 }

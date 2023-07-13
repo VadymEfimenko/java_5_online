@@ -12,6 +12,4 @@ import java.util.List;
 public interface ProductVariantRepository extends BaseEntityRepository<ProductVariant> {
 
     Collection<ProductVariant> findByProduct(Product product);
-
-    List<ProductVariant> findAllByCodeIn(List<String> codes);
 }

@@ -33,11 +33,6 @@ public class ProductVariant extends BaseEntity {
     @Column(nullable = false)
     private Integer price;
 
-    private Boolean meat;
-
-    @Column(nullable = false, unique = true)
-    private Long code;
-
     @ManyToOne
     private Product product;
 }

@@ -17,7 +17,6 @@ public class ProductPLPDto {
     private Long id;
     private String name;
     private String image;
-    private String price = "100.00";
 
     public ProductPLPDto(Product product) {
         this.id = product.getId();
