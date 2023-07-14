@@ -41,27 +41,27 @@ values (2,
         true,'Hawaiian BBQ');
 insert into product_images
 values (3,
-        'https://tcdn.tchpt.com/admin/aux?https://tcdn.tchpt.com/admin/aux?b=c1~4066c4e45b62c35f92d362574ab3a0c91&a=c1~534&f=Fireworks_1024x768__2019-07-02_18-28-18.jpg',
+        'https://tcdn.tchpt.com/admin/aux?b=c1~4066c4e45b62c35f92d362574ab3a0c91&a=c1~534&f=Fireworks_1024x768__2019-07-02_18-28-18.jpg',
         true,'Fireworks Pizza');
 insert into product_images
 values (4,
-        'https://tcdn.tchpt.com/admin/aux?https://tcdn.tchpt.com/admin/aux?b=c1~4066c4e45b62c35f92d362574ab3a0c91&a=c1~1141&f=SPOM-5Cheese-1024x768__2023-02-27_18-09-55.jpg',
+        'https://tcdn.tchpt.com/admin/aux?b=c1~4066c4e45b62c35f92d362574ab3a0c91&a=c1~1141&f=SPOM-5Cheese-1024x768__2023-02-27_18-09-55.jpg',
         true,'Five Cheese Stuffed Crust');
 insert into product_images
 values (5,
-        'https://tcdn.tchpt.com/admin/aux?https://tcdn.tchpt.com/admin/aux?b=c1~4066c4e45b62c35f92d362574ab3a0c91&a=c1~932&f=Ultimate+Spinach+Pepperoni_1024x768__2022-02-24_23-26-18.jpg',
+        'https://tcdn.tchpt.com/admin/aux?b=c1~4066c4e45b62c35f92d362574ab3a0c91&a=c1~932&f=Ultimate+Spinach+Pepperoni_1024x768__2022-02-24_23-26-18.jpg',
         true,'Ultimate Spinach Pepperoni');
 insert into product_images
 values (6,
-        'https://tcdn.tchpt.com/admin/aux?https://tcdn.tchpt.com/admin/aux?b=c1~4066c4e45b62c35f92d362574ab3a0c91&a=c1~901&f=TP_CurryChickenDelight_1024x768__2021-08-04_17-32-35.jpg',
+        'https://tcdn.tchpt.com/admin/aux?b=c1~4066c4e45b62c35f92d362574ab3a0c91&a=c1~901&f=TP_CurryChickenDelight_1024x768__2021-08-04_17-32-35.jpg',
         true,'Curry Chicken Delight');
 insert into product_images
 values (7,
-        'https://tcdn.tchpt.com/admin/aux?https://tcdn.tchpt.com/admin/aux?b=c1~4066c4e45b62c35f92d362574ab3a0c91&a=c1~880&f=MediterraneanPizza_1024x768__2021-05-28_6-31-47.jpg',
+        'https://tcdn.tchpt.com/admin/aux?b=c1~4066c4e45b62c35f92d362574ab3a0c91&a=c1~880&f=MediterraneanPizza_1024x768__2021-05-28_6-31-47.jpg',
         true,'Mediterranean Pizza');
 insert into product_images
 values (8,
-        'https://tcdn.tchpt.com/admin/aux?https://tcdn.tchpt.com/admin/aux?b=c1~4066c4e45b62c35f92d362574ab3a0c91&a=c1~576&f=KogiSerranoChili_1024x768__2019-07-30_17-33-45.jpg',
+        'https://tcdn.tchpt.com/admin/aux?b=c1~4066c4e45b62c35f92d362574ab3a0c91&a=c1~576&f=KogiSerranoChili_1024x768__2019-07-30_17-33-45.jpg',
         true,'Serrano Chili Pizza');
 
 insert into product_variants values (default, 'STANDARD', 'CHEESE_CORNICIONE','SPICY',199,40,'STANDARD',1);
