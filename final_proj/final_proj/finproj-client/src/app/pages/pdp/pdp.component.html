@@ -149,14 +149,14 @@
           <th>Crust</th>
           <td>{{ productResult.crustType }}</td>
         </tr>
-        <tr>
-          <th>Result price</th>
-          <td>{{ productResult.price }}</td>
-        </tr>
+<!--        <tr>-->
+<!--          <th>Result price</th>-->
+<!--          <td>{{ productResult.price }}</td>-->
+<!--        </tr>-->
       </table>
     </div>
   </div>
-<!--  <div class="d-flex flex-column mt-4">-->
-<!--    <button type="button" class="btn btn-primary" [disabled]="!(_form.valid)" (click)="addToCart()">Buy</button>-->
-<!--  </div>-->
+  <div class="d-flex flex-column mt-4">
+    <button type="button" class="btn btn-primary" [disabled]="!(_form.valid)" (click)="addToCart()">Buy</button>
+  </div>
 </ng-container>

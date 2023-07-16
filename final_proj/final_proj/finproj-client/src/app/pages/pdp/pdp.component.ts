@@ -3,8 +3,10 @@ import {Router} from "@angular/router";
 import {PdpService} from "../../services/pdp.service";
 import {ProductPdpModel} from "../../models/product-pdp.model";
 import {CommonModule} from "@angular/common";
-import {BehaviorSubject, Observable, take, tap} from "rxjs";
+import {BehaviorSubject, Observable, switchMap, take, tap} from "rxjs";
 import {defaultProductResultModel, ProductResultModel} from "../../models/product-result.model";
+import {CartService} from "../../services/cart.service";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-pdp',
@@ -22,7 +24,16 @@ export class PdpComponent implements OnInit {
   public readonly productResult$: Observable<ProductResultModel> = this._productResultSub$.asObservable();
   product?: ProductPdpModel;
 
-  constructor(private _router: Router, private _pdpService: PdpService) {
+  _form = this._fb.group({
+    size: new FormControl(0, [Validators.required]),
+    cornicioneType: new FormControl('', [Validators.required]),
+    topping: new FormControl('', [Validators.required]),
+    cheese: new FormControl('', [Validators.required]),
+    crustType: new FormControl('', [Validators.required]),
+
+  })
+
+  constructor(private _fb: FormBuilder, private _router: Router, private _pdpService: PdpService, private _cartService: CartService) {
   }
 
   ngOnInit(): void {
@@ -42,12 +53,12 @@ export class PdpComponent implements OnInit {
       .pipe(
         take(1),
         tap(res => {
-          const ps: ProductResultModel = { ...res };
+          const ps: ProductResultModel = {...res};
           ps.size = size;
-          this._productResultSub$.next({ ...ps });
-          // this._form.controls.os.setValue(os);
+          this._productResultSub$.next({...ps});
+          this._form.controls.size.setValue(size);
 
-      // its commented in egor   // this.checkForUndefined(ps);
+          // its commented in egor   // this.checkForUndefined(ps);
         })
       )
       .subscribe();
@@ -59,10 +70,10 @@ export class PdpComponent implements OnInit {
       .pipe(
         take(1),
         tap(res => {
-          const ps: ProductResultModel = { ...res };
+          const ps: ProductResultModel = {...res};
           ps.cornicioneType = cornicione;
-          this._productResultSub$.next({ ...ps });
-          // this._form.controls.os.setValue(os);
+          this._productResultSub$.next({...ps});
+          this._form.controls.cornicioneType.setValue(cornicione);
 
           // its commented in egor   // this.checkForUndefined(ps);
         })
@@ -75,10 +86,10 @@ export class PdpComponent implements OnInit {
       .pipe(
         take(1),
         tap(res => {
-          const ps: ProductResultModel = { ...res };
+          const ps: ProductResultModel = {...res};
           ps.topping = topping;
-          this._productResultSub$.next({ ...ps });
-          // this._form.controls.os.setValue(os);
+          this._productResultSub$.next({...ps});
+          this._form.controls.topping.setValue(topping);
 
           // its commented in egor   // this.checkForUndefined(ps);
         })
@@ -91,10 +102,10 @@ export class PdpComponent implements OnInit {
       .pipe(
         take(1),
         tap(res => {
-          const ps: ProductResultModel = { ...res };
+          const ps: ProductResultModel = {...res};
           ps.cheese = cheese;
-          this._productResultSub$.next({ ...ps });
-          // this._form.controls.os.setValue(os);
+          this._productResultSub$.next({...ps});
+          this._form.controls.cheese.setValue(cheese);
 
           // its commented in egor   // this.checkForUndefined(ps);
         })
@@ -107,14 +118,28 @@ export class PdpComponent implements OnInit {
       .pipe(
         take(1),
         tap(res => {
-          const ps: ProductResultModel = { ...res };
+          const ps: ProductResultModel = {...res};
           ps.crustType = crust;
-          this._productResultSub$.next({ ...ps });
-          // this._form.controls.os.setValue(os);
+          this._productResultSub$.next({...ps});
+          this._form.controls.crustType.setValue(crust);
           //
           // its commented in egor   // this.checkForUndefined(ps);
         })
       )
       .subscribe();
+  }
+
+  addToCart(): void {
+    this.productResult$
+      .pipe(
+        switchMap(res => this._pdpService.loadProductIdByVariants(this.product?.id as number, res)),
+        switchMap(res => this._cartService.addToCart(res, 1)),
+      )
+      .subscribe((res) => {
+        this._router.navigateByUrl('/cart')
+      }, (error) => {
+        console.log('error', error);
+        this._router.navigateByUrl('/login')
+      });
   }
 }

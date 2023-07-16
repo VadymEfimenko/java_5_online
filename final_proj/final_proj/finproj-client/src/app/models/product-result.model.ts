@@ -1,6 +1,6 @@
 export interface ProductResultModel {
 
-  price?: number;
+  // price?: number;
 
   size?: number;
 

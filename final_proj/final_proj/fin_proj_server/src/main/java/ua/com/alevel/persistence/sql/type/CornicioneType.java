@@ -2,6 +2,8 @@ package ua.com.alevel.persistence.sql.type;
 
 import lombok.Getter;
 
+import java.util.Arrays;
+
 @Getter
 public enum CornicioneType {
 
@@ -13,5 +15,12 @@ public enum CornicioneType {
 
     CornicioneType(String cornicione) {
         this.cornicione = cornicione;
+    }
+
+    public static CornicioneType findByType(String cornicione) {
+        return Arrays
+                .stream(CornicioneType.values()).filter(cornicioneType -> cornicioneType.getCornicione().equals(cornicione))
+                .findFirst()
+                .get();
     }
 }
