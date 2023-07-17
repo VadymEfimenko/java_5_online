@@ -12,7 +12,9 @@ import ua.com.alevel.persistence.sql.repository.order.CartEntryRepository;
 import ua.com.alevel.persistence.sql.repository.order.CartRepository;
 import ua.com.alevel.service.order.CartService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import static ua.com.alevel.util.ExceptionUtil.ENTITY_NOT_FOUND;
@@ -65,8 +67,34 @@ public class CartServiceImpl implements CartService {
                 .orElseThrow(() -> new EntityNotFoundException(ENTITY_NOT_FOUND));
     }
 
+//    @Override
+//    public List<CartEntry> findByCart(Cart cart) {
+//        System.out.println(cartEntryRepository.findAllByCart(cart));
+//        return cartEntryRepository.findAllByCart(cart);
+//    }
+
+
     @Override
     public List<CartEntry> findByCart(Cart cart) {
-        return cartEntryRepository.findAllByCart(cart);
+        List<CartEntry> entries = cartEntryRepository.findAllByCart(cart);
+        List<CartEntry> cartEntryListDistinct = new ArrayList<>();
+        List<Long> varIds = new ArrayList<>(entries.stream().map(cartEntry -> cartEntry.getProductVariant().getId()).distinct().toList());
+        for (int i = 0; i < varIds.size(); i++) {
+            int quantity = 0;
+            for (int j = 0; j < entries.size(); j++) {
+                if (Objects.equals(entries.get(j).getProductVariant().getId(), varIds.get(i))){
+                    quantity++;
+                }
+            }
+            Long id = varIds.get(i);
+            for (CartEntry entry : entries) {
+                if (entry.getProductVariant().getId() == id){
+                    entry.setQuantity(quantity);
+                    cartEntryListDistinct.add(entry);
+                    break;
+                }
+            }
+        }
+        return cartEntryListDistinct;
     }
 }
