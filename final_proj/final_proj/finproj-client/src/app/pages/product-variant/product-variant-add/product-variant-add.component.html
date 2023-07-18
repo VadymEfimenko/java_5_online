@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="formProduct" (ngSubmit)="create()">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect01">Select size</label>
+          <select class="form-select" id="inputGroupSelect01" formControlName="size">
+            <option selected>Choose...</option>
+            <option
+              *ngFor="let size of sizeTypes"
+              [value]="size">
+              {{ size }}
+            </option>
+          </select>
+        </div>
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect02">Select cornicione type</label>
+          <select class="form-select" id="inputGroupSelect02" formControlName="cornicioneType">
+            <option selected>Choose...</option>
+            <option
+              *ngFor="let cornicioneType of cornicioneTypes"
+              [value]="cornicioneType">
+              {{ cornicioneType }}
+            </option>
+          </select>
+        </div>
+
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect03">Select topping</label>
+          <select class="form-select" id="inputGroupSelect03" formControlName="topping">
+            <option selected>Choose...</option>
+            <option
+              *ngFor="let topping of toppingAndCheeseTypes"
+              [value]="topping">
+              {{ topping }}
+            </option>
+          </select>
+        </div>
+
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect04">Select cheese</label>
+          <select class="form-select" id="inputGroupSelect04" formControlName="cheese">
+            <option selected>Choose...</option>
+            <option
+              *ngFor="let cheese of toppingAndCheeseTypes"
+              [value]="cheese">
+              {{ cheese }}
+            </option>
+          </select>
+        </div>
+
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect05">Select crust type</label>
+          <select class="form-select" id="inputGroupSelect05" formControlName="crustType">
+            <option selected>Choose...</option>
+            <option
+              *ngFor="let crustType of crustType"
+              [value]="crustType">
+              {{ crustType }}
+            </option>
+          </select>
+        </div>
+
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect06">Price</label>
+          <input type="number" id="inputGroupSelect06" formControlName="price">
+        </div>
+
+        <button class="btn btn-primary" type="submit">Create</button>
+      </form>
+    </div>
+  </div>
+</div>

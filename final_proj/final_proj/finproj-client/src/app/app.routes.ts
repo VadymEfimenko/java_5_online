@@ -31,5 +31,20 @@ export const APP_ROUTES: Routes = [
     path: 'cart',
     pathMatch: 'prefix',
     loadChildren:() => import('./pages/cart/cart.router').then(m => m.CART_ROUTES)
+  },
+  {
+    path: 'product-variant',
+    pathMatch: 'prefix',
+    loadChildren:() => import('./pages/product-variant/product-variant.routes').then(m => m.PRODUCT_VARIANT_ROUTES)
+  },
+  {
+    path: 'product',
+    pathMatch: 'prefix',
+    loadChildren:() => import('./pages/product/product.routes').then(m => m.PRODUCT_ROUTES)
+  },
+  {
+    path: 'image',
+    pathMatch: 'prefix',
+    loadChildren:() => import('./pages/image/image.routes').then(m => m.IMAGE_ROUTES)
   }
 ];

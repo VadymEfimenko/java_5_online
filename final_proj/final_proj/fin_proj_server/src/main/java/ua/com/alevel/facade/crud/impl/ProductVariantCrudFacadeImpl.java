@@ -59,5 +59,6 @@ public class ProductVariantCrudFacadeImpl implements ProductVariantCrudFacade {
         productVariant.setTopping(dto.getTopping());
         productVariant.setCheese(dto.getCheese());
         productVariant.setCrustType(dto.getCrustType());
+        productVariant.setPrice(dto.getPrice());
     }
 }

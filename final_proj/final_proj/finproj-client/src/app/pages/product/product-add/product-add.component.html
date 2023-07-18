@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="formProduct" (ngSubmit)="create()">
+
+
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect01">Name</label>
+          <input type="text" id="inputGroupSelect01" formControlName="name">
+        </div>
+
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect02">Description</label>
+          <input type="text" id="inputGroupSelect02" formControlName="description">
+        </div>
+
+        <button class="btn btn-primary" type="submit">Create</button>
+      </form>
+    </div>
+  </div>
+</div>

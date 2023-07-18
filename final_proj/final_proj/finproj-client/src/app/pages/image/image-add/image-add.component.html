@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="formProduct" (ngSubmit)="create()">
+
+
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect01">URL</label>
+          <input type="text" id="inputGroupSelect01" formControlName="imageUrl">
+        </div>
+
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect02">Select cornicione type</label>
+          <select class="form-select" id="inputGroupSelect02" formControlName="mainImage">
+            <option selected>Choose...</option>
+            <option
+              *ngFor="let mainImage of mainImages"
+              [value]="mainImage">
+              {{ mainImage }}
+            </option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Create</button>
+      </form>
+    </div>
+  </div>
+</div>
