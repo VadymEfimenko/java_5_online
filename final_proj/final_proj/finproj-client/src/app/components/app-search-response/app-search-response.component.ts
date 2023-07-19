@@ -11,7 +11,7 @@ import {AppSearchComponent} from "../app-search/app-search.component";
 @Component({
   selector: 'app-app-search-response',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AppSearchComponent],
   templateUrl: './app-search-response.component.html',
   styleUrls: ['./app-search-response.component.scss']
 })
@@ -23,11 +23,11 @@ export class AppSearchResponseComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this._appSearch.queryForm.valueChanges.subscribe(valueChanges => {
-      if (valueChanges.query) {
-        this.data$ = this._searchService.loadSearchProducts(valueChanges.query);
-      }
-    })
+
+  }
+
+  loadProducts(q : string){
+    this.data$ = this._searchService.loadSearchProducts(q);
   }
 
   redirectToPdp(productId: number): void {

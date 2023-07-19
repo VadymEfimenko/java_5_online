@@ -1,4 +1,4 @@
-
+<app-search (outEnterQuery)="loadProducts($event)"></app-search>
 <ng-container *ngIf="data$ | async as plpList">
   <div class="d-flex flex-wrap justify-content-center">
     <div class="p-0" *ngFor="let product of plpList">

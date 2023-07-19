@@ -1,4 +1,4 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import {Component, EventEmitter, Injectable, OnInit, Output} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ProductSearchService} from "../../services/product-search.service";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
@@ -28,8 +28,17 @@ export class AppSearchComponent {
 
   constructor(private _http: HttpClient, private _searchService: ProductSearchService, private _router: Router) {
   }
+
+  @Output() outEnterQuery = new EventEmitter<string>();
+
+  private _q : string | undefined;
+
+  get q(): string {
+    return <string>this._q;
+  }
+
   searchProduct(): void {
-    this._searchService.loadSearchProducts(this.queryForm.value.query).subscribe();
+    this.outEnterQuery.emit(this.queryForm.value.query)
     this._router.navigateByUrl('/search');
   }
 }
