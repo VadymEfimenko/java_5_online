@@ -1,4 +1,5 @@
 import {Routes} from "@angular/router";
+import {ProductAttachComponent} from "./pages/product/product-attach/product-attach.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -46,5 +47,15 @@ export const APP_ROUTES: Routes = [
     path: 'image',
     pathMatch: 'prefix',
     loadChildren:() => import('./pages/image/image.routes').then(m => m.IMAGE_ROUTES)
+  },
+  {
+    path: 'attach',
+    pathMatch: 'prefix',
+    loadChildren:() => import('./pages/product/product-attach/product-attach.routes').then(m => m.PRODUCT_ATTACH_ROUTES)
+  },
+  {
+    path: 'search',
+    pathMatch: 'prefix',
+    loadChildren:() => import('./components/app-search-response/search.routes').then(m => m.SEARCH_ROUTES)
   }
 ];

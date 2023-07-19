@@ -16,6 +16,7 @@ import ua.com.alevel.service.crud.product.ProductVariantCrudService;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import static ua.com.alevel.util.ExceptionUtil.ENTITY_NOT_FOUND;
 
@@ -77,5 +78,10 @@ public class ProductVariantCrudServiceImpl implements ProductVariantCrudService 
                 )
                 .orElseThrow(() -> new EntityNotFoundException(ENTITY_NOT_FOUND));
         return productVariant.getId();
+    }
+
+    @Override
+    public Set<ProductVariant> findAllByIdIn(Set<Long> ids) {
+        return productVariantRepository.findAllByIdIn(ids);
     }
 }

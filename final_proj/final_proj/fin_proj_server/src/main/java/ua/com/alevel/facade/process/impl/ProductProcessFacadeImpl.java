@@ -1,6 +1,7 @@
 package ua.com.alevel.facade.process.impl;
 
 import org.springframework.stereotype.Service;
+import ua.com.alevel.data.dto.product.ProductDto;
 import ua.com.alevel.data.dto.product.ProductProcessDto;
 import ua.com.alevel.facade.process.ProductProcessFacade;
 import ua.com.alevel.persistence.sql.entity.product.Product;
@@ -31,10 +32,12 @@ public class ProductProcessFacadeImpl implements ProductProcessFacade {
     @Override
     public void attach(Long id, ProductProcessDto dto) {
         Product product = productCrudService.findById(id);
-        ProductVariant productVariant = productVariantCrudService.findById(dto.getProductVariantId());
+        Set<ProductVariant> productVariants = productVariantCrudService.findAllByIdIn(dto.getProductVariantId());
         Set<ProductImage> productImages = productImageCrudService.findAllByIdIn(dto.getProductImages());
-        productVariant.setProduct(product);
-        productVariantCrudService.update(productVariant);
+        for (ProductVariant productVariant : productVariants) {
+            productVariant.setProduct(product);
+            productVariantCrudService.update(productVariant);
+        }
         product.setProductImages(productImages);
         productCrudService.update(product);
     }

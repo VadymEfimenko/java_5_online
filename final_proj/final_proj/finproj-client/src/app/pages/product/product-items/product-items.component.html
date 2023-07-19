@@ -7,6 +7,8 @@
           <th>id</th>
           <th>name</th>
           <th>description</th>
+          <th>attach</th>
+          <th>delete</th>
         </tr>
         </thead>
         <tbody>
@@ -14,6 +16,16 @@
           <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.description }}</td>
+          <td>
+            <a
+              class="btn btn-primary"
+              role="button" (click)="redirectToAttach(item.id)">attach</a>
+          </td>
+          <td>
+            <a
+              class="btn btn-primary"
+              role="button" (click)="redirectToDelete(item.id)">delete</a>
+          </td>
         </tr>
         </tbody>
       </table>

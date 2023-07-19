@@ -9,6 +9,6 @@ import java.util.Set;
 @Setter
 public class ProductProcessDto {
 
-    private Long productVariantId;
+    private Set<Long> productVariantId;
     private Set<Long> productImages;
 }

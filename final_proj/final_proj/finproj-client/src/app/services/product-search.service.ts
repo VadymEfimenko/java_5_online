@@ -17,7 +17,8 @@ export class ProductSearchService {
   constructor(private _http: HttpClient) {
   }
 
-  loadSearchProducts(query : string): Observable<Object> {
+  loadSearchProducts(query : string): Observable<ProductPlpModel[]> {
+    console.log(query);
     const params : HttpParams = new HttpParams()
       .set('query', query);
     return this._http.get(appSettings.apiOpen + '/products/plp/search', {params})

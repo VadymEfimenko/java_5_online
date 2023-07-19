@@ -6,12 +6,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.data.datatable.DataTableRequest;
 import ua.com.alevel.exception.FieldEmptyException;
+import ua.com.alevel.persistence.sql.entity.BaseEntity;
 import ua.com.alevel.persistence.sql.entity.product.Product;
+import ua.com.alevel.persistence.sql.entity.product.ProductVariant;
+import ua.com.alevel.persistence.sql.repository.product.ProductImageRepository;
 import ua.com.alevel.persistence.sql.repository.product.ProductRepository;
+import ua.com.alevel.persistence.sql.repository.product.ProductVariantRepository;
 import ua.com.alevel.service.crud.CrudHelperService;
 import ua.com.alevel.service.crud.product.ProductCrudService;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 import static ua.com.alevel.util.ExceptionUtil.*;
@@ -21,10 +26,14 @@ import static ua.com.alevel.util.ExceptionUtil.*;
 public class ProductCrudServiceImpl implements ProductCrudService {
 
     private final ProductRepository productRepository;
+    private final ProductImageRepository imageRepository;
+    private final ProductVariantRepository variantRepository;
     private final CrudHelperService<Product, ProductRepository> crudHelperService;
 
-    public ProductCrudServiceImpl(ProductRepository productRepository, CrudHelperService<Product, ProductRepository> crudHelperService) {
+    public ProductCrudServiceImpl(ProductRepository productRepository, ProductImageRepository imageRepository, ProductVariantRepository variantRepository, CrudHelperService<Product, ProductRepository> crudHelperService) {
         this.productRepository = productRepository;
+        this.imageRepository = imageRepository;
+        this.variantRepository = variantRepository;
         this.crudHelperService = crudHelperService;
     }
 
@@ -44,6 +53,14 @@ public class ProductCrudServiceImpl implements ProductCrudService {
     @Override
     public void delete(Long id) {
         isValidId(id);
+        Product product = findById(id);
+        Collection<ProductVariant> productVariantSet = variantRepository.findByProduct(product);
+        List<Long> productImagesIds = product.getProductImages().stream().map(BaseEntity::getId).toList();
+        product.setProductImages(new HashSet<>());
+
+        productRepository.save(product);
+        variantRepository.deleteAll(productVariantSet);
+        imageRepository.deleteAllByIdIn(productImagesIds);
         crudHelperService.delete(id, productRepository);
     }
 

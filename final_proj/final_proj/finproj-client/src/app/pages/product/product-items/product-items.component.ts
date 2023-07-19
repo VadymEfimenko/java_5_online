@@ -6,6 +6,7 @@ import {FormBuilder, FormControl, ReactiveFormsModule} from "@angular/forms";
 import {DataTableModel} from "../../../models/data-table.model";
 import {ProductModel} from "../../../models/product.model";
 import {ProductService} from "../../../services/product-service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-product-items',
@@ -24,7 +25,7 @@ export class ProductItemsComponent implements OnInit {
     size: new FormControl(10)
   })
 
-  constructor(private _productService: ProductService, private _fb: FormBuilder) {
+  constructor(private _productService: ProductService, private _fb: FormBuilder, private _router: Router) {
   }
 
   ngOnInit(): void {
@@ -38,5 +39,13 @@ export class ProductItemsComponent implements OnInit {
 
   showPage(page: number): void {
     this.data$ = this._productService.loadProducts(page);
+  }
+
+  redirectToAttach(id ?: number): void {
+    this._router.navigateByUrl('/attach/' + id);
+  }
+
+  redirectToDelete(id?: number): void {
+    this._productService.deleteProduct(id!);
   }
 }

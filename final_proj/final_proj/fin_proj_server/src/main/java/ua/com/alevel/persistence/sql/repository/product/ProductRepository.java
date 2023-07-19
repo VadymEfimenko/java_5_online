@@ -10,5 +10,4 @@ import java.util.List;
 public interface ProductRepository extends BaseEntityRepository<Product> {
 
     List<Product> findProductsByNameContainsIgnoreCase(String query);
-
 }

@@ -2,6 +2,7 @@ package ua.com.alevel.persistence.sql.repository.product;
 
 import org.springframework.stereotype.Repository;
 import ua.com.alevel.persistence.sql.entity.product.Product;
+import ua.com.alevel.persistence.sql.entity.product.ProductImage;
 import ua.com.alevel.persistence.sql.entity.product.ProductVariant;
 import ua.com.alevel.persistence.sql.repository.BaseEntityRepository;
 import ua.com.alevel.persistence.sql.type.CornicioneType;
@@ -10,6 +11,7 @@ import ua.com.alevel.persistence.sql.type.ToppingAndCheeseType;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface ProductVariantRepository extends BaseEntityRepository<ProductVariant> {
@@ -19,4 +21,6 @@ public interface ProductVariantRepository extends BaseEntityRepository<ProductVa
     Optional<ProductVariant> findByProductAndSizeAndCornicioneTypeAndToppingAndCheeseAndCrustType(
             Product product, Integer size, CornicioneType cornicioneType, ToppingAndCheeseType topping, ToppingAndCheeseType cheese, CrustType crustType
     );
+
+    Set<ProductVariant> findAllByIdIn(Set<Long> ids);
 }

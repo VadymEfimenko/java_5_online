@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ProductSearchService} from "../../services/product-search.service";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
@@ -16,10 +16,13 @@ import {PlpService} from "../../services/plp.service";
   templateUrl: './app-search.component.html',
   styleUrls: ['./app-search.component.scss']
 })
+@Injectable({
+  providedIn: 'root'
+})
 export class AppSearchComponent {
 
   queryForm: FormGroup = new FormGroup({
-    query: new FormControl()
+    query: new FormControl('')
   });
 
   constructor(private _http: HttpClient, private _searchService: ProductSearchService) {

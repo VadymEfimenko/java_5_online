@@ -5,6 +5,7 @@ import {DataTableModel} from "../models/data-table.model";
 import {DataContainer} from "../models/data.container";
 import {appSettings} from "../app.const";
 import {ProductModel} from "../models/product.model";
+import {AttachModel} from "../models/attach.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,11 @@ export class ProductService {
   constructor(private _http: HttpClient) {
   }
 
-  loadProducts(page: number = 0, size: number = 10, sort: string = 'asc', order: string = 'id')
+  loadProducts(page: number = 0, size: number = 3, sort: string = 'asc', order: string = 'id')
     : Observable<DataTableModel<ProductModel>> {
     const params: HttpParams = new HttpParams()
       .set('page', page)
-      .set('size', size)
+      .set('size', size!)
       .set('sort', sort)
       .set('order', order);
     return this._http.get(appSettings.apiPrivateAdmin + '/products', {params})
@@ -38,5 +39,27 @@ export class ProductService {
           return data.data;
         })
       );
+  }
+
+  attachProduct(attach: AttachModel, id: string): Observable<boolean> {
+    return this._http.put(appSettings.apiPrivateAdmin + '/products/' + id + '/process/attach', attach)
+      .pipe(
+        map(res => {
+          const data: DataContainer = res as DataContainer;
+          return data.data;
+        })
+      );
+  }
+
+
+  deleteProduct(id: number): Observable<boolean> {
+    console.log('service' + id);
+    return this._http.delete(appSettings.apiPrivateAdmin + '/products/' + id)
+      .pipe(
+        map(res => {
+          const data: DataContainer = res as DataContainer;
+          return data.data;
+        })
+      )
   }
 }
