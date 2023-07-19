@@ -15,7 +15,7 @@ export class ProductVariantService {
   constructor(private _http: HttpClient) {
   }
 
-  loadProductVariants(page: number = 0, size: number = 10, sort: string = 'asc', order: string = 'id')
+  loadProductVariants(page: number, size: number, sort: string , order: string )
     : Observable<DataTableModel<ProductVariantModel>> {
     const params: HttpParams = new HttpParams()
       .set('page', page)

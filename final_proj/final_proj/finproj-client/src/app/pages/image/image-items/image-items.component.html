@@ -1,6 +1,11 @@
 <div class="container" *ngIf="data$ | async as data">
   <div class="row">
     <div class="col-12">
+      <div>
+        <p>page: <b>{{data.page + 1}}</b></p>
+        <p>elements: from <b>{{(data.page * data.size) + 1}}</b> to <b>{{(data.page + 1) * data.size}}</b></p>
+        <p>total: <b>{{data.totalElements}}</b></p>
+      </div>
       <table class="table table-hover">
         <thead>
         <tr>
@@ -42,28 +47,28 @@
                 <a class="page-link"
                    role="button"
                    (click)="showPage(data.page + 1)">
-                  {{ data.page + 1 }}
-                </a>
-              </li>
-              <li class="page-item">
-                <a class="page-link"
-                   role="button"
-                   (click)="showPage(data.page + 2)">
                   {{ data.page + 2 }}
                 </a>
               </li>
               <li class="page-item">
                 <a class="page-link"
                    role="button"
-                   (click)="showPage(data.page + 3)">
+                   (click)="showPage(data.page + 2)">
                   {{ data.page + 3 }}
                 </a>
               </li>
               <li class="page-item">
                 <a class="page-link"
                    role="button"
-                   (click)="showPage(data.page + 4)">
+                   (click)="showPage(data.page + 3)">
                   {{ data.page + 4 }}
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link"
+                   role="button"
+                   (click)="showPage(data.page + 4)">
+                  {{ data.page + 5 }}
                 </a>
               </li>
               <li class="page-item">
@@ -84,7 +89,7 @@
           </nav>
         </div>
         <div class="p-2">
-          <form [formGroup]="sizeForm">
+          <form [formGroup]="requestForm" (ngSubmit)="showPage(0)">
             <select class="form-select" aria-label="Default select example" formControlName="size">
               <option
                 *ngFor="let size of sizes"
@@ -93,6 +98,15 @@
                 {{ size }}
               </option>
             </select>
+            <select class="form-select" aria-label="Default select example" formControlName="sort">
+              <option
+                *ngFor="let sorts of sort"
+                [value]="sorts"
+                [selected]="sorts === data.sort">
+                {{ sorts }}
+              </option>
+            </select>
+            <button class="btn btn-primary" type="submit">Do</button>
           </form>
         </div>
       </div>

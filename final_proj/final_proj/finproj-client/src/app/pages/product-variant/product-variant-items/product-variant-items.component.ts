@@ -20,34 +20,30 @@ import {ProductVariantModel} from "../../../models/product-variant.model";
 export class ProductVariantItemsComponent implements OnInit {
 
   data$: Observable<DataTableModel<ProductVariantModel>> | undefined;
-  sizes: number[] = [5, 10, 25, 50, 100];
-  sizeForm = this._fb.group({
-    size: new FormControl(10)
+  sizes: number[] = [3, 5, 10, 50];
+  sort : string[] = ['asc', 'desc']
+  order : string[] = ['id', 'price', 'size']
+
+  requestForm = this._fb.group({
+    page: new FormControl(0),
+    size: new FormControl(10),
+    sort: new FormControl('asc'),
+    order: new FormControl('id')
   })
 
   constructor(private _productVariantService: ProductVariantService, private _fb: FormBuilder) {
   }
 
   ngOnInit(): void {
-    this.data$ = this._productVariantService.loadProductVariants();
-    this.sizeForm.valueChanges.subscribe(valueChanges => {
-      if (valueChanges.size) {
-        this.data$ = this._productVariantService.loadProductVariants(0, valueChanges.size);
+    this.data$ = this._productVariantService.loadProductVariants(this.requestForm.value.page!, this.requestForm.value.size!, this.requestForm.value.sort!, this.requestForm.value.order!);
+    this.requestForm.valueChanges.subscribe(valueChanges => {
+      if (valueChanges.size && valueChanges.page && valueChanges.sort && valueChanges.order) {
+        this.data$ = this._productVariantService.loadProductVariants(valueChanges.page, valueChanges.size, valueChanges.sort, valueChanges.order);
       }
     })
   }
 
   showPage(page: number): void {
-    this.data$ = this._productVariantService.loadProductVariants(page);
-  }
-
-  setOrder(page: number, order: string): void {
-    let size: number;
-    this.sizeForm.valueChanges.subscribe(valueChanges => {
-      if (valueChanges.size) {
-        size = valueChanges.size;
-      }
-      this.data$ = this._productVariantService.loadProductVariants(page, size, order);
-    })
+    this.data$ = this._productVariantService.loadProductVariants(page, this.requestForm.value.size!, this.requestForm.value.sort!, this.requestForm.value.order!);
   }
 }

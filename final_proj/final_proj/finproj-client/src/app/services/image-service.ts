@@ -14,7 +14,7 @@ export class ImageService {
   constructor(private _http: HttpClient) {
   }
 
-  loadImages(page: number = 0, size: number = 10, sort: string = 'asc', order: string = 'id')
+  loadImages(page: number, size: number, sort: string, order: string = 'id')
     : Observable<DataTableModel<ImageModel>> {
     const params: HttpParams = new HttpParams()
       .set('page', page)

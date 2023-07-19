@@ -44,13 +44,7 @@ export class ImageAddComponent implements OnInit {
   }
 
   create(): void {
-
-    let some = 'ffg,gssg,sgsg';
-    let s = some.split(',');
-
-
     if (this.formProduct.valid) {
-      console.log(this.formProduct.value)
 
       let imageUrl = this.formProduct.value.imageUrl as string;
       let mainImage = this.formProduct.value.mainImage as boolean;

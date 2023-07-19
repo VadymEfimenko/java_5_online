@@ -21,24 +21,28 @@ import {ImageService} from "../../../services/image-service";
 export class ImageItemsComponent implements OnInit {
 
   data$: Observable<DataTableModel<ImageModel>> | undefined;
-  sizes: number[] = [5, 10, 25, 50, 100];
-  sizeForm = this._fb.group({
-    size: new FormControl(10)
+  sizes: number[] = [3, 5, 10, 50];
+  sort : string[] = ['asc', 'desc']
+
+  requestForm = this._fb.group({
+    page: new FormControl(0),
+    size: new FormControl(10),
+    sort: new FormControl('asc'),
   })
 
   constructor(private _imageService: ImageService, private _fb: FormBuilder) {
   }
 
   ngOnInit(): void {
-    this.data$ = this._imageService.loadImages();
-    this.sizeForm.valueChanges.subscribe(valueChanges => {
-      if (valueChanges.size) {
-        this.data$ = this._imageService.loadImages(0, valueChanges.size);
+    this.data$ = this._imageService.loadImages(this.requestForm.value.page!, this.requestForm.value.size!, this.requestForm.value.sort!, 'id');
+    this.requestForm.valueChanges.subscribe(valueChanges => {
+      if (valueChanges.size && valueChanges.page && valueChanges.sort) {
+        this.data$ = this._imageService.loadImages(valueChanges.page, valueChanges.size, valueChanges.sort, 'id');
       }
     })
   }
 
   showPage(page: number): void {
-    this.data$ = this._imageService.loadImages(page);
+    this.data$ = this._imageService.loadImages(page, this.requestForm.value.size!, this.requestForm.value.sort!);
   }
 }

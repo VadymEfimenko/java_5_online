@@ -24,7 +24,7 @@ export class ProductItemsComponent implements OnInit {
   sort : string[] = ['asc', 'desc']
   order : string[] = ['id', 'name']
 
-  sizeForm = this._fb.group({
+  requestForm = this._fb.group({
     page: new FormControl(0),
     size: new FormControl(10),
     sort: new FormControl('asc'),
@@ -35,8 +35,8 @@ export class ProductItemsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.data$ = this._productService.loadProducts(this.sizeForm.value.page!, this.sizeForm.value.size!, this.sizeForm.value.sort!, this.sizeForm.value.order!);
-    this.sizeForm.valueChanges.subscribe(valueChanges => {
+    this.data$ = this._productService.loadProducts(this.requestForm.value.page!, this.requestForm.value.size!, this.requestForm.value.sort!, this.requestForm.value.order!);
+    this.requestForm.valueChanges.subscribe(valueChanges => {
       if (valueChanges.size && valueChanges.page && valueChanges.sort && valueChanges.order) {
         this.data$ = this._productService.loadProducts(valueChanges.page, valueChanges.size, valueChanges.sort, valueChanges.order);
       }
@@ -44,7 +44,7 @@ export class ProductItemsComponent implements OnInit {
   }
 
   showPage(page: number): void {
-    this.data$ = this._productService.loadProducts(page, this.sizeForm.value.size!, this.sizeForm.value.sort!, this.sizeForm.value.order!);
+    this.data$ = this._productService.loadProducts(page, this.requestForm.value.size!, this.requestForm.value.sort!, this.requestForm.value.order!);
   }
 
   redirectToAttach(id ?: number): void {
