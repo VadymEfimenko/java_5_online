@@ -16,7 +16,7 @@ export class ProductService {
   constructor(private _http: HttpClient, private _router : Router) {
   }
 
-  loadProducts(page: number = 0, size: number = 3, sort: string = 'asc', order: string = 'id')
+  loadProducts(page: number, size: number, sort: string, order: string)
     : Observable<DataTableModel<ProductModel>> {
     const params: HttpParams = new HttpParams()
       .set('page', page)

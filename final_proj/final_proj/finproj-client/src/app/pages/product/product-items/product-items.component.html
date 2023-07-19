@@ -105,6 +105,22 @@
                 {{ size }}
               </option>
             </select>
+            <select class="form-select" aria-label="Default select example" formControlName="sort">
+              <option
+                *ngFor="let sorts of sort"
+                [value]="sorts"
+                [selected]="sorts === data.sort">
+                {{ sorts }}
+              </option>
+            </select>
+            <select class="form-select" aria-label="Default select example" formControlName="sort">
+              <option
+                *ngFor="let ord of order"
+                [value]="ord"
+                [selected]="ord === data.order">
+                {{ ord }}
+              </option>
+            </select>
           </form>
         </div>
       </div>

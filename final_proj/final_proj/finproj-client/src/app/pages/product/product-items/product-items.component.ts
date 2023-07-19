@@ -19,26 +19,32 @@ import {Router} from "@angular/router";
 })
 export class ProductItemsComponent implements OnInit {
 
-  data$: Observable<DataTableModel<ProductModel>>  = this._productService.loadProducts();
+  data$: Observable<DataTableModel<ProductModel>> | undefined;
   sizes: number[] = [5, 10, 25, 50, 100];
+  sort : string[] = ['asc', 'desc']
+  order : string[] = ['id', 'name']
+
   sizeForm = this._fb.group({
-    size: new FormControl(10)
+    page: new FormControl(0),
+    size: new FormControl(10),
+    sort: new FormControl('asc'),
+    order: new FormControl('id')
   })
 
   constructor(private _productService: ProductService, private _fb: FormBuilder, private _router: Router) {
   }
 
   ngOnInit(): void {
-    this.data$ = this._productService.loadProducts();
+    this.data$ = this._productService.loadProducts(this.sizeForm.value.page!, this.sizeForm.value.size!, this.sizeForm.value.sort!, this.sizeForm.value.order!);
     this.sizeForm.valueChanges.subscribe(valueChanges => {
-      if (valueChanges.size) {
-        this.data$ = this._productService.loadProducts(0, valueChanges.size);
+      if (valueChanges.size && valueChanges.page && valueChanges.sort && valueChanges.order) {
+        this.data$ = this._productService.loadProducts(valueChanges.page, valueChanges.size, valueChanges.sort, valueChanges.order);
       }
     })
   }
 
   showPage(page: number): void {
-    this.data$ = this._productService.loadProducts(page);
+    this.data$ = this._productService.loadProducts(page, this.sizeForm.value.size!, this.sizeForm.value.sort!, this.sizeForm.value.order!);
   }
 
   redirectToAttach(id ?: number): void {
