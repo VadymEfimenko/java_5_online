@@ -20,7 +20,7 @@ import {Router} from "@angular/router";
 export class ProductItemsComponent implements OnInit {
 
   data$: Observable<DataTableModel<ProductModel>> | undefined;
-  sizes: number[] = [5, 10, 25, 50, 100];
+  sizes: number[] = [3, 5, 10, 50];
   sort : string[] = ['asc', 'desc']
   order : string[] = ['id', 'name']
 
