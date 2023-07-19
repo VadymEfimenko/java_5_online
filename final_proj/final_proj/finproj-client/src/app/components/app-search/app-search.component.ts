@@ -8,6 +8,7 @@ import {DataContainer} from "../../models/data.container";
 import {HttpClient} from "@angular/common/http";
 import {PlpComponent} from "../../pages/plp/plp.component";
 import {PlpService} from "../../services/plp.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search',
@@ -25,10 +26,10 @@ export class AppSearchComponent {
     query: new FormControl('')
   });
 
-  constructor(private _http: HttpClient, private _searchService: ProductSearchService) {
+  constructor(private _http: HttpClient, private _searchService: ProductSearchService, private _router: Router) {
   }
-
   searchProduct(): void {
-    this._searchService.loadSearchProducts(this.queryForm.value.query);
+    this._searchService.loadSearchProducts(this.queryForm.value.query).subscribe();
+    this._router.navigateByUrl('/search');
   }
 }

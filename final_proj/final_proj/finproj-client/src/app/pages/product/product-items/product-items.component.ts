@@ -19,7 +19,7 @@ import {Router} from "@angular/router";
 })
 export class ProductItemsComponent implements OnInit {
 
-  data$: Observable<DataTableModel<ProductModel>> | undefined;
+  data$: Observable<DataTableModel<ProductModel>>  = this._productService.loadProducts();
   sizes: number[] = [5, 10, 25, 50, 100];
   sizeForm = this._fb.group({
     size: new FormControl(10)
@@ -46,6 +46,6 @@ export class ProductItemsComponent implements OnInit {
   }
 
   redirectToDelete(id?: number): void {
-    this._productService.deleteProduct(id!);
+    this._productService.deleteProduct(id!).subscribe();
   }
 }

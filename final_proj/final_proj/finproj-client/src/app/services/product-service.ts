@@ -6,13 +6,14 @@ import {DataContainer} from "../models/data.container";
 import {appSettings} from "../app.const";
 import {ProductModel} from "../models/product.model";
 import {AttachModel} from "../models/attach.model";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  constructor(private _http: HttpClient) {
+  constructor(private _http: HttpClient, private _router : Router) {
   }
 
   loadProducts(page: number = 0, size: number = 3, sort: string = 'asc', order: string = 'id')
@@ -60,6 +61,7 @@ export class ProductService {
           const data: DataContainer = res as DataContainer;
           return data.data;
         })
+
       )
   }
 }
