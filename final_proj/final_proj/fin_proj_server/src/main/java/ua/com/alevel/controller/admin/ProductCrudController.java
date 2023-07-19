@@ -19,6 +19,7 @@ import ua.com.alevel.facade.crud.ProductCrudFacade;
 @RequestMapping("/api/private/admin/products")
 @PreAuthorize("hasRole('ADMIN')")
 public class ProductCrudController {
+
     private final ProductCrudFacade productCrudFacade;
 
     public ProductCrudController(ProductCrudFacade productCrudFacade) {
