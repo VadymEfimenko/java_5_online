@@ -54,7 +54,6 @@ export class ProductService {
 
 
   deleteProduct(id: number): Observable<boolean> {
-    console.log('service' + id);
     return this._http.delete(appSettings.apiPrivateAdmin + '/products/' + id)
       .pipe(
         map(res => {

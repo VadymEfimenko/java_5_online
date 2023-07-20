@@ -37,8 +37,8 @@ export class ProductItemsComponent implements OnInit {
   ngOnInit(): void {
     this.data$ = this._productService.loadProducts(this.requestForm.value.page!, this.requestForm.value.size!, this.requestForm.value.sort!, this.requestForm.value.order!);
     this.requestForm.valueChanges.subscribe(valueChanges => {
-      if (valueChanges.size && valueChanges.page && valueChanges.sort && valueChanges.order) {
-        this.data$ = this._productService.loadProducts(valueChanges.page, valueChanges.size, valueChanges.sort, valueChanges.order);
+      if (valueChanges.size || valueChanges.page || valueChanges.sort || valueChanges.order) {
+        this.data$ = this._productService.loadProducts(valueChanges.page!, valueChanges.size!, valueChanges.sort!, valueChanges.order!);
       }
     })
   }
