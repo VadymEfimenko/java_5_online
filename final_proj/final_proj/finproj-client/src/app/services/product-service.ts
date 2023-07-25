@@ -60,7 +60,7 @@ export class ProductService {
           const data: DataContainer = res as DataContainer;
           return data.data;
         })
-
       )
+
   }
 }

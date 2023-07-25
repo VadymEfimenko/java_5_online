@@ -31,7 +31,7 @@ export class ProductItemsComponent implements OnInit {
     order: new FormControl('id')
   })
 
-  constructor(private _productService: ProductService, private _fb: FormBuilder, private _router: Router) {
+  constructor(private _productService: ProductService, private _fb: FormBuilder, private _router: Router ) {
   }
 
   ngOnInit(): void {
@@ -52,6 +52,14 @@ export class ProductItemsComponent implements OnInit {
   }
 
   redirectToDelete(id?: number): void {
-    this._productService.deleteProduct(id!).subscribe();
+    this._productService.deleteProduct(id!).subscribe(
+      (res)=>{
+        if(res){
+          this.showPage(this.requestForm.value.page!)
+        }
+      },(error)=>{
+        console.log(error)
+      }
+    )
   }
 }

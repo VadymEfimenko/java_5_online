@@ -89,7 +89,7 @@
           </nav>
         </div>
         <div class="p-2">
-          <form [formGroup]="requestForm" (ngSubmit)="showPage(0)">
+          <form [formGroup]="requestForm">
             <select class="form-select" aria-label="Default select example" formControlName="size">
               <option
                 *ngFor="let size of sizes"
@@ -106,7 +106,6 @@
                 {{ sorts }}
               </option>
             </select>
-            <button class="btn btn-primary" type="submit">Do</button>
           </form>
         </div>
       </div>

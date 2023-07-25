@@ -36,8 +36,8 @@ export class ImageItemsComponent implements OnInit {
   ngOnInit(): void {
     this.data$ = this._imageService.loadImages(this.requestForm.value.page!, this.requestForm.value.size!, this.requestForm.value.sort!, 'id');
     this.requestForm.valueChanges.subscribe(valueChanges => {
-      if (valueChanges.size && valueChanges.page && valueChanges.sort) {
-        this.data$ = this._imageService.loadImages(valueChanges.page, valueChanges.size, valueChanges.sort, 'id');
+      if (valueChanges.size || valueChanges.page || valueChanges.sort) {
+        this.data$ = this._imageService.loadImages(valueChanges.page!, valueChanges.size!, valueChanges.sort!, 'id');
       }
     })
   }
