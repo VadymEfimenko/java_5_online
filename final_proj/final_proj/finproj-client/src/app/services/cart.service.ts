@@ -32,4 +32,14 @@ export class CartService {
         })
       );
   }
+
+  clearCart() : Observable<boolean> {
+    return this._http.delete(appSettings.apiPrivatePersonal + '/cart/clear')
+      .pipe(
+        map(res => {
+          const data: DataContainer = res as DataContainer;
+          return data.data;
+        })
+      );
+  }
 }

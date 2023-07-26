@@ -56,7 +56,9 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void clear() {
-
+        Personal personal = authenticationService.findPersonal();
+        Optional<Cart> optionalCart = cartRepository.findByPersonalAndActiveTrue(personal);
+        cartEntryRepository.deleteAllByCart(optionalCart.get());
     }
 
     @Override

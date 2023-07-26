@@ -5,5 +5,9 @@ export const CART_ROUTES: Routes = [
   {
     path: '',
     component: CartComponent
+  },
+  {
+    path: 'clear',
+    component: CartComponent
   }
 ];

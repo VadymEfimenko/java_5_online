@@ -11,4 +11,6 @@ import java.util.List;
 public interface CartEntryRepository extends BaseEntityRepository<CartEntry> {
 
     List<CartEntry> findAllByCart(Cart cart);
+
+    void deleteAllByCart(Cart cart);
 }

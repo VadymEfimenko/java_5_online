@@ -23,6 +23,7 @@ public class CartFacadeImpl implements CartFacade {
     private final CartService cartService;
     private final ProductVariantCrudService productVariantCrudService;
 
+
     @Override
     public CartDto findActive() {
         Cart cart = cartService.getActive();
@@ -72,6 +73,6 @@ public class CartFacadeImpl implements CartFacade {
 
     @Override
     public void clear() {
-
+        cartService.clear();
     }
 }

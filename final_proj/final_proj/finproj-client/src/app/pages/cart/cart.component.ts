@@ -23,4 +23,15 @@ export class CartComponent {
 
   constructor(private _cartService: CartService) {
   }
+
+  clearCart() : void{
+    this._cartService.clearCart().subscribe(
+      (res)=>{
+        if(res){
+          this.cart$ = this._cartService.loadCart();
+        }
+      },(error)=>{
+        console.log(error)
+      });
+  }
 }

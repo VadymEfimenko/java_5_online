@@ -29,4 +29,11 @@ public class CartController {
         cartFacade.add(cartEntryDto);
         return ResponseEntity.ok(new DataContainer<>(Boolean.TRUE));
     }
+
+    @DeleteMapping("/clear")
+    @PreAuthorize("hasAuthority('personal:create')")
+    public ResponseEntity<DataContainer<Boolean>> clear(){
+        cartFacade.clear();
+        return ResponseEntity.ok(new DataContainer<>(Boolean.TRUE));
+    }
 }
